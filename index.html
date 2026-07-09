@@ -111,6 +111,14 @@ body.rtl-text .lang-check{margin-left:0;margin-right:auto;}
 .can-kart-bg{position:absolute;top:0;right:0;font-size:50px;opacity:0.08;transform:translate(5px,-5px);}
 .can-kart-ust{display:flex;align-items:flex-start;gap:6px;margin-bottom:5px;}
 .can-emoji-wrap{width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:26px;border-radius:6px;flex-shrink:0;}
+.can-frame{position:relative;width:46px;height:46px;flex-shrink:0;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:25px;border:2px solid transparent;background:linear-gradient(150deg,#2a1808,#140a02) padding-box,linear-gradient(135deg,#fff5c0,#f0bc50,#8B5E1A,#f0bc50,#fff5c0) border-box;box-shadow:inset 0 0 10px rgba(0,0,0,0.65),0 1px 3px rgba(0,0,0,0.35);}
+.can-frame.fm7{background:linear-gradient(150deg,#3d2c04,#1c1200) padding-box,linear-gradient(135deg,#fff0b0,#e8b845,#9a7020,#e8b845) border-box;}
+.can-frame.fm8{background:linear-gradient(150deg,#122e0a,#081703) padding-box,linear-gradient(135deg,#c8f0a8,#5faa3a,#2d5a18,#5faa3a) border-box;}
+.can-frame.fm9{background:linear-gradient(150deg,#3a0b0b,#1c0404) padding-box,linear-gradient(135deg,#ffc8b0,#d05030,#7a1a10,#d05030) border-box;}
+.can-medal{position:absolute;top:-7px;left:-7px;width:19px;height:19px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:7px;font-weight:900;color:#fff8e0;background:radial-gradient(circle at 35% 30%,#8a6a20,#4a3408);border:1.5px solid #e8c860;box-shadow:0 1px 3px rgba(0,0,0,0.5);z-index:2;}
+.can-frame.fm7 .can-medal{background:radial-gradient(circle at 35% 30%,#d4a520,#7a5a08);border-color:#ffe9a0;}
+.can-frame.fm8 .can-medal{background:radial-gradient(circle at 35% 30%,#4a8a28,#1d4a0c);border-color:#9fe07a;}
+.can-frame.fm9 .can-medal{background:radial-gradient(circle at 35% 30%,#b03020,#5a0e08);border-color:#ffb090;}
 .can-info{flex:1;min-width:0;}
 .can-isim{font-family:'Cinzel',serif;font-size:9px;color:var(--text2);font-weight:700;line-height:1.3;margin-bottom:2px;}
 .can-nuf{font-family:'Cinzel',serif;font-size:8px;color:var(--text3);}
@@ -298,6 +306,84 @@ body.rtl-text .tip-badge{margin-right:0;margin-left:4px;}
     </div>
   </div>
 
+  <div class="slider-section" style="margin-top:10px">
+    <div class="slider-row" style="margin-bottom:0">
+      <div class="slider-label"><span id="lbl-sav">⚔️ Savaşa Katılan</span><span class="slider-val" id="sav-val"></span></div>
+      <div class="slider-steps">
+        <button class="step-btn active" onclick="setSav(1)" id="sav-1">1 Komutan</button>
+        <button class="step-btn" onclick="setSav(3)" id="sav-3">3 Komutan</button>
+        <button class="step-btn" onclick="setSav(4)" id="sav-4">3 Komutan + Kahraman</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="slider-section" style="margin-top:10px">
+    <div class="slider-row" style="margin-bottom:0">
+      <button class="step-btn" id="gelismis-btn" onclick="toggleGelismis()" style="width:100%">⚙️ <span id="lbl-gelismis">Gelişmiş Mod — Hasar Çarpanı (isteğe bağlı)</span></button>
+    </div>
+    <div id="gelismis-alan" style="display:none;margin-top:10px">
+      <div class="slider-label"><span id="lbl-bonus">🎖 Kişisel Bonuslar (komutan · kahraman · ekipman)</span></div>
+      <div class="cap-row" style="margin-top:6px">
+        <div class="cap-field">
+          <span class="cap-label" id="lbl-bguc">💪 Güç Bonusu (%)</span>
+          <input type="number" class="cap-input" id="bonus_guc" placeholder="örn. 93" inputmode="numeric">
+        </div>
+        <div class="cap-field">
+          <span class="cap-label" id="lbl-bsag">❤️ Sağlık Bonusu (%)</span>
+          <input type="number" class="cap-input" id="bonus_sag" placeholder="örn. 50" inputmode="numeric">
+        </div>
+      </div>
+      <div class="slider-label" style="margin-top:12px"><span id="lbl-ejder">🐉 Ejderha Bonusu (seviyesine göre)</span></div>
+      <div class="cap-row" style="margin-top:6px">
+        <div class="cap-field">
+          <span class="cap-label" id="lbl-eguc">💪 Ordu Gücü (%)</span>
+          <input type="number" class="cap-input" id="ejder_guc" placeholder="örn. 160" inputmode="numeric">
+        </div>
+        <div class="cap-field">
+          <span class="cap-label" id="lbl-esag">❤️ Ordu Sağlığı (%)</span>
+          <input type="number" class="cap-input" id="ejder_sag" placeholder="örn. 160" inputmode="numeric">
+        </div>
+      </div>
+      <div class="slider-label" style="margin-top:12px"><span id="lbl-carpanlar">🗡 Savaş Çarpanları (rapordan)</span></div>
+      <div class="cap-row" style="margin-top:6px">
+        <div class="cap-field">
+          <span class="cap-label" id="lbl-carpan">⚔️ Birlik Çarpanı</span>
+          <input type="number" class="cap-input" id="carpan" placeholder="örn. 35,27" inputmode="decimal" step="any">
+        </div>
+        <div class="cap-field">
+          <span class="cap-label" id="lbl-cancarpan">🐉 Canavar Çarpanı</span>
+          <input type="number" class="cap-input" id="can_carpan" placeholder="örn. 36,27" inputmode="decimal" step="any">
+        </div>
+      </div>
+      <div class="slider-label" style="margin-top:12px"><span id="lbl-cbul">🔎 Çarpanımı Bul — savaş raporundan hesapla</span></div>
+      <div class="cap-row" style="margin-top:6px">
+        <div class="cap-field">
+          <span class="cap-label" id="lbl-cb-birlik">Birlik</span>
+          <select class="cap-input" id="cb_birlik"></select>
+        </div>
+        <div class="cap-field">
+          <span class="cap-label" id="lbl-cb-adet">Manga adedi</span>
+          <input type="number" class="cap-input" id="cb_adet" placeholder="örn. 30693" inputmode="numeric">
+        </div>
+      </div>
+      <div class="cap-row" style="margin-top:6px">
+        <div class="cap-field">
+          <span class="cap-label" id="lbl-cb-hasar">Rapordaki toplam hasar</span>
+          <input type="number" class="cap-input" id="cb_hasar" placeholder="örn. 4366367764" inputmode="numeric">
+        </div>
+        <div class="cap-field">
+          <span class="cap-label" id="lbl-cb-ek">Ek hasar (varsa)</span>
+          <input type="number" class="cap-input" id="cb_ek" placeholder="örn. 1053788908" inputmode="numeric">
+        </div>
+      </div>
+      <div class="slider-steps" style="margin-top:8px">
+        <button class="step-btn" id="cb_ikikat" onclick="this.classList.toggle('active')">×2 <span id="lbl-cb-ikikat">iki kat hasar yazıyorsa işaretle</span></button>
+        <button class="step-btn" id="cb_hesapla" onclick="carpanBul()" style="font-weight:bold">🔎 <span id="lbl-cb-hesapla">Çarpanı Hesapla</span></button>
+      </div>
+      <div id="cb_sonuc" style="font-size:12px;color:var(--text2);text-align:center;margin-top:8px"></div>
+    </div>
+  </div>
+
   <div class="secim-block">
     <div class="secim-title" id="lbl-muh">🛡 Muhafız Birlikleri — Seviye Seç</div>
     <div class="birlik-grid" id="muhafiz-grid"></div>
@@ -387,6 +473,38 @@ var TXT = {
   copyBtn:{tr:'KOPYALA',en:'COPY',de:'KOPIEREN',fr:'COPIER',es:'COPIAR',ru:'КОПИРОВАТЬ',pt:'COPIAR',ar:'نسخ'},
   copyAllBtn:{tr:'📋 Tümünü Kopyala',en:'📋 Copy All',de:'📋 Alles Kopieren',fr:'📋 Tout Copier',es:'📋 Copiar Todo',ru:'📋 Копировать Всё',pt:'📋 Copiar Tudo',ar:'📋 نسخ الكل'},
   shareBtn2:{tr:'📤 Paylaş',en:'📤 Share',de:'📤 Teilen',fr:'📤 Partager',es:'📤 Compartir',ru:'📤 Поделиться',pt:'📤 Compartilhar',ar:'📤 مشاركة'},
+  orduGuc:{tr:'💪 TOPLAM ORDU GÜCÜ',en:'💪 TOTAL ARMY POWER',de:'💪 GESAMTE ARMEEKRAFT',fr:'💪 PUISSANCE TOTALE',es:'💪 PODER TOTAL DEL EJÉRCITO',ru:'💪 ОБЩАЯ СИЛА АРМИИ',pt:'💪 PODER TOTAL DO EXÉRCITO',ar:'💪 إجمالي قوة الجيش'},
+  orduSag:{tr:'❤️ TOPLAM ORDU SAĞLIĞI',en:'❤️ TOTAL ARMY HEALTH',de:'❤️ GESAMTE ARMEEGESUNDHEIT',fr:'❤️ SANTÉ TOTALE',es:'❤️ SALUD TOTAL DEL EJÉRCITO',ru:'❤️ ОБЩЕЕ ЗДОРОВЬЕ АРМИИ',pt:'❤️ SAÚDE TOTAL DO EXÉRCITO',ar:'❤️ إجمالي صحة الجيش'},
+  lblBonus:{tr:'🎖 Kişisel Bonuslar (komutan · kahraman · ekipman)',en:'🎖 Personal Bonuses (commander · hero · gear)',de:'🎖 Persönliche Boni (Kommandant · Held · Ausrüstung)',fr:'🎖 Bonus Personnels (commandant · héros · équipement)',es:'🎖 Bonos Personales (comandante · héroe · equipo)',ru:'🎖 Личные Бонусы (командир · герой · снаряжение)',pt:'🎖 Bônus Pessoais (comandante · herói · equipamento)',ar:'🎖 المكافآت الشخصية (القائد · البطل · العتاد)'},
+  lblBGuc:{tr:'💪 Güç Bonusu (%)',en:'💪 Power Bonus (%)',de:'💪 Kraftbonus (%)',fr:'💪 Bonus de Puissance (%)',es:'💪 Bono de Poder (%)',ru:'💪 Бонус Силы (%)',pt:'💪 Bônus de Poder (%)',ar:'💪 مكافأة القوة (٪)'},
+  lblBSag:{tr:'❤️ Sağlık Bonusu (%)',en:'❤️ Health Bonus (%)',de:'❤️ Gesundheitsbonus (%)',fr:'❤️ Bonus de Santé (%)',es:'❤️ Bono de Salud (%)',ru:'❤️ Бонус Здоровья (%)',pt:'❤️ Bônus de Saúde (%)',ar:'❤️ مكافأة الصحة (٪)'},
+  lblSav:{tr:'⚔️ Savaşa Katılan — her seçenek kendi liderlik/nüfuz değerini saklar',en:'⚔️ Joining the Battle — each option keeps its own leadership/might values',de:'⚔️ Am Kampf Beteiligt — jede Option speichert eigene Werte',fr:'⚔️ Participants — chaque option garde ses propres valeurs',es:'⚔️ Participantes — cada opción guarda sus propios valores',ru:'⚔️ Участники — каждый вариант хранит свои значения',pt:'⚔️ Participantes — cada opção guarda seus próprios valores',ar:'⚔️ المشاركون — كل خيار يحفظ قيمه الخاصة'},
+  sav1:{tr:'1 Komutan',en:'1 Commander',de:'1 Kommandant',fr:'1 Commandant',es:'1 Comandante',ru:'1 Командир',pt:'1 Comandante',ar:'قائد واحد'},
+  sav3:{tr:'3 Komutan',en:'3 Commanders',de:'3 Kommandanten',fr:'3 Commandants',es:'3 Comandantes',ru:'3 Командира',pt:'3 Comandantes',ar:'3 قادة'},
+  sav4:{tr:'3 Komutan + Kahraman',en:'3 Commanders + Hero',de:'3 Kommandanten + Held',fr:'3 Commandants + Héros',es:'3 Comandantes + Héroe',ru:'3 Командира + Герой',pt:'3 Comandantes + Herói',ar:'3 قادة + بطل'},
+  savGuc:{tr:'💪 SAVAŞ TOPLAMI — GÜÇ',en:'💪 BATTLE TOTAL — POWER',de:'💪 KAMPFSUMME — KRAFT',fr:'💪 TOTAL COMBAT — PUISSANCE',es:'💪 TOTAL BATALLA — PODER',ru:'💪 ИТОГ БОЯ — СИЛА',pt:'💪 TOTAL DA BATALHA — PODER',ar:'💪 إجمالي المعركة — القوة'},
+  savSag:{tr:'❤️ SAVAŞ TOPLAMI — SAĞLIK',en:'❤️ BATTLE TOTAL — HEALTH',de:'❤️ KAMPFSUMME — GESUNDHEIT',fr:'❤️ TOTAL COMBAT — SANTÉ',es:'❤️ TOTAL BATALLA — SALUD',ru:'❤️ ИТОГ БОЯ — ЗДОРОВЬЕ',pt:'❤️ TOTAL DA BATALHA — SAÚDE',ar:'❤️ إجمالي المعركة — الصحة'},
+  savNot:{tr:'Savaş toplamı = birlik toplamı × kişisel bonus',en:'Battle total = army total × personal bonus',de:'Kampfsumme = Armeesumme × persönlicher Bonus',fr:'Total combat = total armée × bonus personnel',es:'Total batalla = total ejército × bono personal',ru:'Итог боя = итог армии × личный бонус',pt:'Total da batalha = total do exército × bônus pessoal',ar:'إجمالي المعركة = إجمالي الجيش × المكافأة الشخصية'},
+  lblGelismis:{tr:'Gelişmiş Mod — Hasar Çarpanı (isteğe bağlı)',en:'Advanced Mode — Damage Multiplier (optional)',de:'Erweiterter Modus — Schadensmultiplikator (optional)',fr:'Mode Avancé — Multiplicateur de Dégâts (optionnel)',es:'Modo Avanzado — Multiplicador de Daño (opcional)',ru:'Расширенный режим — Множитель урона (опционально)',pt:'Modo Avançado — Multiplicador de Dano (opcional)',ar:'الوضع المتقدم — مضاعف الضرر (اختياري)'},
+  lblCarpan:{tr:'⚔️ Birlik Çarpanı',en:'⚔️ Troop Multiplier',de:'⚔️ Truppen-Multiplikator',fr:'⚔️ Multiplicateur de Troupes',es:'⚔️ Multiplicador de Tropas',ru:'⚔️ Множитель войск',pt:'⚔️ Multiplicador de Tropas',ar:'⚔️ مضاعف القوات'},
+  lblCBul:{tr:'🔎 Çarpanımı Bul — savaş raporundan hesapla',en:'🔎 Find My Multiplier — calculate from a battle report',de:'🔎 Meinen Multiplikator finden — aus Kampfbericht berechnen',fr:'🔎 Trouver Mon Multiplicateur — depuis un rapport de combat',es:'🔎 Encontrar Mi Multiplicador — desde un informe de batalla',ru:'🔎 Найти мой множитель — из отчёта о бое',pt:'🔎 Encontrar Meu Multiplicador — de um relatório de batalha',ar:'🔎 إيجاد مضاعفي — من تقرير المعركة'},
+  lblCbBirlik:{tr:'Birlik',en:'Unit',de:'Einheit',fr:'Unité',es:'Unidad',ru:'Юнит',pt:'Unidade',ar:'الوحدة'},
+  lblCbAdet:{tr:'Manga adedi',en:'Squad size',de:'Truppgröße',fr:'Taille du groupe',es:'Tamaño del escuadrón',ru:'Размер отряда',pt:'Tamanho do esquadrão',ar:'حجم الفرقة'},
+  lblCbHasar:{tr:'Rapordaki toplam hasar',en:'Total damage in report',de:'Gesamtschaden im Bericht',fr:'Dégâts totaux du rapport',es:'Daño total del informe',ru:'Общий урон из отчёта',pt:'Dano total do relatório',ar:'إجمالي الضرر في التقرير'},
+  lblCbEk:{tr:'Ek hasar (varsa)',en:'Extra damage (if any)',de:'Zusatzschaden (falls vorhanden)',fr:'Dégâts bonus (le cas échéant)',es:'Daño extra (si lo hay)',ru:'Доп. урон (если есть)',pt:'Dano extra (se houver)',ar:'ضرر إضافي (إن وجد)'},
+  lblCbIkikat:{tr:'iki kat hasar yazıyorsa işaretle',en:'check if report says double damage',de:'ankreuzen bei doppeltem Schaden',fr:'cocher si dégâts doublés',es:'marcar si daño doble',ru:'отметьте при двойном уроне',pt:'marque se dano em dobro',ar:'حدد إذا كان الضرر مضاعفًا'},
+  lblCbHesapla:{tr:'Çarpanı Hesapla',en:'Calculate Multiplier',de:'Multiplikator Berechnen',fr:'Calculer le Multiplicateur',es:'Calcular Multiplicador',ru:'Рассчитать множитель',pt:'Calcular Multiplicador',ar:'احسب المضاعف'},
+  cbSonucOk:{tr:'Çarpanın: ',en:'Your multiplier: ',de:'Dein Multiplikator: ',fr:'Votre multiplicateur : ',es:'Tu multiplicador: ',ru:'Ваш множитель: ',pt:'Seu multiplicador: ',ar:'مضاعفك: '},
+  cbSonucHata:{tr:'Lütfen birlik, adet ve hasar değerlerini gir',en:'Please enter unit, size and damage',de:'Bitte Einheit, Größe und Schaden eingeben',fr:'Veuillez saisir unité, taille et dégâts',es:'Ingresa unidad, tamaño y daño',ru:'Введите юнит, размер и урон',pt:'Insira unidade, tamanho e dano',ar:'أدخل الوحدة والحجم والضرر'},
+  vurusLbl:{tr:'🗡 tahmini vuruş: ',en:'🗡 est. hit: ',de:'🗡 gesch. Treffer: ',fr:'🗡 coup estimé : ',es:'🗡 golpe est.: ',ru:'🗡 примерный удар: ',pt:'🗡 golpe est.: ',ar:'🗡 الضربة التقديرية: '},
+  savVurus:{tr:'🗡 TAHMİNİ TOPLAM VURUŞ (çarpanlı)',en:'🗡 ESTIMATED TOTAL HIT (with multiplier)',de:'🗡 GESCHÄTZTER GESAMTTREFFER (mit Multiplikator)',fr:'🗡 COUP TOTAL ESTIMÉ (avec multiplicateur)',es:'🗡 GOLPE TOTAL ESTIMADO (con multiplicador)',ru:'🗡 ОЦЕНОЧНЫЙ ОБЩИЙ УДАР (с множителем)',pt:'🗡 GOLPE TOTAL ESTIMADO (com multiplicador)',ar:'🗡 إجمالي الضربة التقديرية (بالمضاعف)'},
+  lblEjder:{tr:'🐉 Ejderha Bonusu (seviyesine göre)',en:'🐉 Dragon Bonus (by its level)',de:'🐉 Drachenbonus (nach Stufe)',fr:'🐉 Bonus de Dragon (selon niveau)',es:'🐉 Bono de Dragón (según nivel)',ru:'🐉 Бонус Дракона (по уровню)',pt:'🐉 Bônus de Dragão (por nível)',ar:'🐉 مكافأة التنين (حسب المستوى)'},
+  lblEGuc:{tr:'💪 Ordu Gücü (%)',en:'💪 Army Power (%)',de:'💪 Armeekraft (%)',fr:'💪 Puissance (%)',es:'💪 Poder (%)',ru:'💪 Сила армии (%)',pt:'💪 Poder (%)',ar:'💪 قوة الجيش (٪)'},
+  lblESag:{tr:'❤️ Ordu Sağlığı (%)',en:'❤️ Army Health (%)',de:'❤️ Armeegesundheit (%)',fr:'❤️ Santé (%)',es:'❤️ Salud (%)',ru:'❤️ Здоровье армии (%)',pt:'❤️ Saúde (%)',ar:'❤️ صحة الجيش (٪)'},
+  lblCarpanlar:{tr:'🗡 Savaş Çarpanları (rapordan)',en:'🗡 Battle Multipliers (from report)',de:'🗡 Kampfmultiplikatoren (aus Bericht)',fr:'🗡 Multiplicateurs de Combat (du rapport)',es:'🗡 Multiplicadores de Batalla (del informe)',ru:'🗡 Боевые множители (из отчёта)',pt:'🗡 Multiplicadores de Batalha (do relatório)',ar:'🗡 مضاعفات المعركة (من التقرير)'},
+  lblCanCarpan:{tr:'🐉 Canavar Çarpanı',en:'🐉 Monster Multiplier',de:'🐉 Monster-Multiplikator',fr:'🐉 Multiplicateur de Monstre',es:'🐉 Multiplicador de Monstruo',ru:'🐉 Множитель монстров',pt:'🐉 Multiplicador de Monstro',ar:'🐉 مضاعف الوحوش'},
+  canVurus:{tr:'🐉 CANAVAR TOPLAM VURUŞ (çarpanlı)',en:'🐉 MONSTER TOTAL HIT (with multiplier)',de:'🐉 MONSTER-GESAMTTREFFER (mit Multiplikator)',fr:'🐉 COUP TOTAL MONSTRES (avec multiplicateur)',es:'🐉 GOLPE TOTAL MONSTRUOS (con multiplicador)',ru:'🐉 ОБЩИЙ УДАР МОНСТРОВ (с множителем)',pt:'🐉 GOLPE TOTAL DOS MONSTROS (com multiplicador)',ar:'🐉 إجمالي ضربة الوحوش (بالمضاعف)'},
+  statNot:{tr:'* Güç/sağlık toplamına yalnızca verisi girilen birlikler dahildir',en:'* Power/health totals include only units with entered data',de:'* Nur Einheiten mit Daten sind in den Summen enthalten',fr:'* Seules les unités avec données sont incluses',es:'* Solo se incluyen unidades con datos',ru:'* Учитываются только юниты с данными',pt:'* Apenas unidades com dados são incluídas',ar:'* تشمل الإجماليات الوحدات المدخلة بياناتها فقط'},
   ldrKul:{tr:'⚔️ LİDERLİK KULLANILAN',en:'⚔️ LEADERSHIP USED',de:'⚔️ FÜHRUNG VERWENDET',fr:'⚔️ COMMANDEMENT UTILISÉ',es:'⚔️ LIDERAZGO USADO',ru:'⚔️ ИСПОЛЬЗОВАНО ЛИДЕРСТВА',pt:'⚔️ LIDERANÇA USADA',ar:'⚔️ القيادة المستخدمة'},
   ldrKal:{tr:'🛡 KALAN LİDERLİK',en:'🛡 REMAINING LEADERSHIP',de:'🛡 VERBLEIBENDE FÜHRUNG',fr:'🛡 COMMANDEMENT RESTANT',es:'🛡 LIDERAZGO RESTANTE',ru:'🛡 ОСТАВШЕЕСЯ ЛИДЕРСТВО',pt:'🛡 LIDERANÇA RESTANTE',ar:'🛡 القيادة المتبقية'},
   nufKul:{tr:'🦁 NÜFUZ KULLANILAN',en:'🦁 MIGHT USED',de:'🦁 MACHT VERWENDET',fr:'🦁 PUISSANCE UTILISÉE',es:'🦁 PODER USADO',ru:'🦁 ИСПОЛЬЗОВАНО МОЩИ',pt:'🦁 PODER USADO',ar:'🦁 النفوذ المستخدم'},
@@ -467,30 +585,30 @@ var NAMES = {
 function N(base){return (NAMES[base] && (NAMES[base][lang]||NAMES[base]['en'])) || base;}
 
 /* ============ GAME DATA (birlik seviyeleri + canavarlar) ============ */
-var secilenOran=1.85, ucanSuvari=10, suvariPiyade=2, ozelFark=7, sonuc=null;
+var secilenOran=1.85, ucanSuvari=10, suvariPiyade=2, ozelFark=7, savasci=1, sonuc=null;
 
 var MUHAFIZ = [
-  {id:'kuzgun',   tip:'ucan',    ldr:20, e:'🦅', sevler:[1,2]},
+  {id:'kuzgun',   tip:'ucan',    ldr:20, e:'🦅', sevler:[1,2], st:{1:[61200,183600],2:[110200,330600]}},
   {id:'sgrifon',  tip:'ucan',    ldr:20, e:'🦅', sevler:[5,6,7]},
-  {id:'cez',      tip:'suvari',  ldr:2,  e:'🐎', sevler:[1,2]},
+  {id:'cez',      tip:'suvari',  ldr:2,  e:'🐎', sevler:[1,2], st:{1:[6120,18360],2:[11020,33060]}},
   {id:'binici',   tip:'suvari',  ldr:2,  e:'🐎', sevler:[1,2,3,4,5,6,7]},
   {id:'atlisov',  tip:'suvari',  ldr:2,  e:'🐴', sevler:[6,7]},
-  {id:'arin',     tip:'menzilli',ldr:1,  e:'🔫', sevler:[1,2]},
+  {id:'arin',     tip:'menzilli',ldr:1,  e:'🔫', sevler:[1,2], st:{1:[3060,9180],2:[5510,16530]}},
   {id:'okcu',     tip:'menzilli',ldr:1,  e:'🏹', sevler:[1,2,3,4,5,6]},
   {id:'agirarb',  tip:'menzilli',ldr:1,  e:'🏹', sevler:[6,7]},
-  {id:'cellat',   tip:'piyade',  ldr:1,  e:'🪓', sevler:[1,2]},
+  {id:'cellat',   tip:'piyade',  ldr:1,  e:'🪓', sevler:[1,2], st:{1:[3060,9180],2:[5510,16530]}},
   {id:'mizrak',   tip:'piyade',  ldr:1,  e:'🪖', sevler:[1,2,3,4,5]},
   {id:'agirteb',  tip:'piyade',  ldr:1,  e:'🪓', sevler:[6,7]}
 ];
 
 var OZEL = [
-  {id:'aslaner',  tip:'ucan',    ldr:20, e:'🦁', sevler:[1,2]},
+  {id:'aslaner',  tip:'ucan',    ldr:20, e:'🦁', sevler:[1,2], st:{1:[61200,183600],2:[110200,330600]}},
   {id:'akbaba',   tip:'ucan',    ldr:1,  e:'🦅', sevler:[5,6,7]},
-  {id:'akyele',   tip:'suvari',  ldr:2,  e:'🐺', sevler:[1,2]},
+  {id:'akyele',   tip:'suvari',  ldr:2,  e:'🐺', sevler:[1,2], st:{1:[6120,18360],2:[11020,33060]}},
   {id:'aslanbin', tip:'suvari',  ldr:2,  e:'🦁', sevler:[5,6,7]},
-  {id:'mes',      tip:'menzilli',ldr:1,  e:'🔫', sevler:[1,2]},
+  {id:'mes',      tip:'menzilli',ldr:1,  e:'🔫', sevler:[1,2], st:{1:[3060,9180],2:[5510,16530]}},
   {id:'keskin',   tip:'menzilli',ldr:1,  e:'🔫', sevler:[5,6,7]},
-  {id:'duel',     tip:'piyade',  ldr:1,  e:'🗡', sevler:[1,2]},
+  {id:'duel',     tip:'piyade',  ldr:1,  e:'🗡', sevler:[1,2], st:{1:[3060,9180],2:[5510,16530]}},
   {id:'kilicli',  tip:'piyade',  ldr:1,  e:'⚔', sevler:[1,2,3,4,5,6]},
   {id:'agirkov',  tip:'piyade',  ldr:1,  e:'🛡', sevler:[6,7]}
 ];
@@ -510,34 +628,34 @@ var ORDU_SIRASI = [
 ];
 
 var CANAVARLAR = [
-  {id:'m3_suelm',    sev:3, base:'suelm',   e:'💧', nuf:3,  guc:1900,    sag:5700},
-  {id:'m3_zumejd',   sev:3, base:'zumejd',  e:'🐊', nuf:7,  guc:4500,    sag:13500},
+  {id:'m3_suelm',    sev:3, base:'suelm',   e:'🌊', nuf:3,  guc:1900,    sag:5700},
+  {id:'m3_zumejd',   sev:3, base:'zumejd',  e:'🐉', nuf:7,  guc:4500,    sag:13500},
   {id:'m3_savdom',   sev:3, base:'savdom',  e:'🐗', nuf:6,  guc:3900,    sag:11700},
   {id:'m3_tascor',   sev:3, base:'tascor',  e:'🗿', nuf:8,  guc:5200,    sag:15600},
   {id:'m4_sihejd',   sev:4, base:'sihejd',  e:'🔮', nuf:13, guc:15000,   sag:45000},
   {id:'m4_cigmed',   sev:4, base:'cigmed',  e:'🐍', nuf:10, guc:12000,   sag:36000},
-  {id:'m4_buzzu',    sev:4, base:'buzzu',   e:'🦢', nuf:15, guc:17000,   sag:51000},
-  {id:'m4_cokmu',    sev:4, base:'cokmu',   e:'🦑', nuf:11, guc:13000,   sag:39000},
+  {id:'m4_buzzu',    sev:4, base:'buzzu',   e:'❄️', nuf:15, guc:17000,   sag:51000},
+  {id:'m4_cokmu',    sev:4, base:'cokmu',   e:'🛡️', nuf:11, guc:13000,   sag:39000},
   {id:'m5_ettin',    sev:5, base:'ettin',   e:'👹', nuf:23, guc:48000,   sag:144000},
-  {id:'m5_colgal',   sev:5, base:'colgal',  e:'🦎', nuf:20, guc:42000,   sag:126000},
+  {id:'m5_colgal',   sev:5, base:'colgal',  e:'🦂', nuf:20, guc:42000,   sag:126000},
   {id:'m5_korman',   sev:5, base:'korman',  e:'🦁', nuf:22, guc:46000,   sag:138000},
-  {id:'m5_alevsnt',  sev:5, base:'alevsnt', e:'🔥', nuf:21, guc:44000,   sag:132000},
+  {id:'m5_alevsnt',  sev:5, base:'alevsnt', e:'🏇', nuf:21, guc:44000,   sag:132000},
   {id:'m6_yakgol',   sev:6, base:'yakgol',  e:'💎', nuf:35, guc:130000,  sag:390000},
   {id:'m6_trolsuv',  sev:6, base:'trolsuv', e:'🧌', nuf:30, guc:110000,  sag:330000},
-  {id:'m6_kristejd', sev:6, base:'kristejd',e:'🐲', nuf:33, guc:120000,  sag:360000},
-  {id:'m6_ormmuhr',  sev:6, base:'ormmuhr', e:'🦖', nuf:34, guc:130000,  sag:390000},
+  {id:'m6_kristejd', sev:6, base:'kristejd',e:'💠', nuf:33, guc:120000,  sag:360000},
+  {id:'m6_ormmuhr',  sev:6, base:'ormmuhr', e:'🦍', nuf:34, guc:130000,  sag:390000},
   {id:'m7_kolosus',  sev:7, base:'kolosus', e:'💀', nuf:43, guc:290000,  sag:870000},
   {id:'m7_karejd',   sev:7, base:'karejd',  e:'🐉', nuf:44, guc:300000,  sag:900000},
   {id:'m7_ruzgar',   sev:7, base:'ruzgar',  e:'🌪', nuf:45, guc:310000,  sag:930000},
-  {id:'m7_antik',    sev:7, base:'antik',   e:'🦕', nuf:41, guc:280000,  sag:840000},
+  {id:'m7_antik',    sev:7, base:'antik',   e:'🦣', nuf:41, guc:280000,  sag:840000},
   {id:'m8_kraken',   sev:8, base:'kraken',  e:'🐙', nuf:55, guc:670000,  sag:2010000},
-  {id:'m8_zumru',    sev:8, base:'zumru',   e:'🦅', nuf:54, guc:660000,  sag:1980000},
-  {id:'m8_tahrip',   sev:8, base:'tahrip',  e:'🐲', nuf:53, guc:650000,  sag:1950000},
+  {id:'m8_zumru',    sev:8, base:'zumru',   e:'🐦‍🔥', nuf:54, guc:660000,  sag:1980000},
+  {id:'m8_tahrip',   sev:8, base:'tahrip',  e:'🐉', nuf:53, guc:650000,  sag:1950000},
   {id:'m8_hileb',    sev:8, base:'hileb',   e:'👺', nuf:52, guc:640000,  sag:1920000},
   {id:'m9_kraken',   sev:9, base:'kraken',  e:'🐙', nuf:55, guc:1210000, sag:3630000},
-  {id:'m9_zumru',    sev:9, base:'zumru',   e:'🔥', nuf:54, guc:1190000, sag:3570000},
-  {id:'m9_tahrip',   sev:9, base:'tahrip',  e:'🐲', nuf:53, guc:1170000, sag:3510000},
-  {id:'m9_hileb',    sev:9, base:'hileb',   e:'👹', nuf:52, guc:1150000, sag:3450000}
+  {id:'m9_zumru',    sev:9, base:'zumru',   e:'🐦‍🔥', nuf:54, guc:1190000, sag:3570000},
+  {id:'m9_tahrip',   sev:9, base:'tahrip',  e:'🐉', nuf:53, guc:1170000, sag:3510000},
+  {id:'m9_hileb',    sev:9, base:'hileb',   e:'👺', nuf:52, guc:1150000, sag:3450000}
 ];
 
 var SEV_META = {
@@ -545,9 +663,9 @@ var SEV_META = {
   4:{cls:'sev-m4', bgCls:'bg-m4', label:'M4'},
   5:{cls:'sev-m5', bgCls:'bg-m5', label:'M5'},
   6:{cls:'sev-m6', bgCls:'bg-m6', label:'M6'},
-  7:{cls:'sev-m7', bgCls:'bg-m7', label:'M7'},
-  8:{cls:'sev-m8', bgCls:'bg-m8', label:'M8'},
-  9:{cls:'sev-m9', bgCls:'bg-m9', label:'M9'}
+  7:{cls:'sev-m7', bgCls:'bg-m7', label:'M7', frameCls:'fm7'},
+  8:{cls:'sev-m8', bgCls:'bg-m8', label:'M8', frameCls:'fm8'},
+  9:{cls:'sev-m9', bgCls:'bg-m9', label:'M9', frameCls:'fm9'}
 };
 
 var ROME = ['','I','II','III','IV','V','VI','VII'];
@@ -558,10 +676,105 @@ OZEL.forEach(function(b){ ozelSecim[b.id] = (b.sevler.join()==='1,2') ? [1,2] : 
 CANAVARLAR.forEach(function(c){ canavarSecim[c.id] = (c.sev>=7); });
 
 function fmt(n){return Math.round(Math.max(0,n)).toLocaleString(LOCALE[lang]||'en-US');}
+function canAd(c){ return N(c.base)+(c.sev===8?' I':c.sev===9?' II':''); }
+function canRozet(sev){ return sev===7?'VII':sev===8?'I':sev===9?'II':SEV_META[sev].label; }
 function fmtK(n){
   if(n>=1e6) return (n/1e6).toFixed(1)+'M';
   if(n>=1e3) return Math.round(n/1e3)+'K';
   return Math.round(n)+'';
+}
+var savProfil = {1:{ldr:'',nuf:''}, 3:{ldr:'',nuf:''}, 4:{ldr:'',nuf:''}};
+function savKaydet(){
+  savProfil[savasci].ldr = document.getElementById('gs_cap').value;
+  savProfil[savasci].nuf = document.getElementById('mc_cap').value;
+}
+function savYukle(){
+  document.getElementById('gs_cap').value = savProfil[savasci].ldr;
+  document.getElementById('mc_cap').value = savProfil[savasci].nuf;
+}
+function savBtnGuncelle(){
+  var sv=document.getElementById('sav-val'); if(sv) sv.textContent='';
+  ['sav-1','sav-3','sav-4'].forEach(function(id){
+    var el=document.getElementById(id);
+    if(el) el.classList.toggle('active', id==='sav-'+savasci);
+  });
+}
+var gelismis=false;
+function toggleGelismis(){
+  gelismis=!gelismis;
+  document.getElementById('gelismis-alan').style.display = gelismis?'block':'none';
+  document.getElementById('gelismis-btn').classList.toggle('active', gelismis);
+  if(sonuc) hesapla();
+}
+function getCarpan(){
+  var v=(document.getElementById('carpan').value||'').replace(',','.');
+  var f=parseFloat(v);
+  return (isFinite(f)&&f>0)?f:0;
+}
+function getCanCarpan(){
+  var v=(document.getElementById('can_carpan').value||'').replace(',','.');
+  var f=parseFloat(v);
+  return (isFinite(f)&&f>0)?f:0;
+}
+function buildCarpanSelect(){
+  var sel=document.getElementById('cb_birlik');
+  if(!sel) return;
+  var h='';
+  MUHAFIZ.concat(OZEL).forEach(function(b){
+    if(!b.st) return;
+    Object.keys(b.st).forEach(function(sev){
+      h+='<option value="'+b.id+'_'+sev+'">'+b.e+' '+N(b.id)+' '+ROME[sev]+'</option>';
+    });
+  });
+  CANAVARLAR.forEach(function(c){
+    if(c.sev<7) return;
+    h+='<option value="can_'+c.id+'">'+c.e+' '+canAd(c)+'</option>';
+  });
+  var cur=sel.value;
+  sel.innerHTML=h;
+  if(cur) sel.value=cur;
+}
+function carpanBul(){
+  var out=document.getElementById('cb_sonuc');
+  var key=document.getElementById('cb_birlik').value;
+  var adet=parseInt(document.getElementById('cb_adet').value)||0;
+  var hasar=parseFloat(document.getElementById('cb_hasar').value)||0;
+  var ek=parseFloat(document.getElementById('cb_ek').value)||0;
+  var ikikat=document.getElementById('cb_ikikat').classList.contains('active');
+  if(!key||adet<=0||hasar<=0){ out.textContent=T('cbSonucHata'); return; }
+  var baz=(hasar-ek)/(ikikat?2:1);
+  var birimGuc=0, hedefAlan='carpan';
+  if(key.indexOf('can_')===0){
+    var cid=key.slice(4), can=null;
+    CANAVARLAR.forEach(function(c){ if(c.id===cid) can=c; });
+    if(!can){ out.textContent=T('cbSonucHata'); return; }
+    birimGuc=can.guc; hedefAlan='can_carpan';
+  } else {
+    var p=key.split('_'), id=p[0], sev=parseInt(p[1]);
+    var birlik=null;
+    MUHAFIZ.concat(OZEL).forEach(function(b){ if(b.id===id) birlik=b; });
+    if(!birlik||!birlik.st||!birlik.st[sev]){ out.textContent=T('cbSonucHata'); return; }
+    birimGuc=birlik.st[sev][0];
+  }
+  var carpan=baz/(adet*birimGuc);
+  if(!isFinite(carpan)||carpan<=0){ out.textContent=T('cbSonucHata'); return; }
+  var yuvarlanmis=Math.round(carpan*1000)/1000;
+  document.getElementById(hedefAlan).value=yuvarlanmis;
+  out.textContent=T('cbSonucOk')+yuvarlanmis;
+  if(sonuc) hesapla();
+}
+function setSavReset(){
+  savProfil = {1:{ldr:'',nuf:''}, 3:{ldr:'',nuf:''}, 4:{ldr:'',nuf:''}};
+  savasci=1;
+  savBtnGuncelle();
+}
+function setSav(n){
+  if(n===savasci) return;
+  savKaydet();
+  savasci=n;
+  savBtnGuncelle();
+  savYukle();
+  if(document.getElementById('gs_cap').value || document.getElementById('mc_cap').value){ if(sonuc) hesapla(); }
 }
 function tipKat(tip){
   if(tip==='ucan') return 1;
@@ -629,14 +842,14 @@ function birlikKartHTML(birlik, secimObj, prefix){
   '</div>';
 }
 function canavarKartHTML(can){
-  var isim = N(can.base);
+  var isim = canAd(can);
   var meta = SEV_META[can.sev];
   var aktif = canavarSecim[can.id];
   var btnTxt = aktif ? ('✓ '+T('selectedWord')) : ('+ '+T('selectWord'));
   return '<div class="can-kart '+(aktif?'active':'')+'" id="ckart-'+can.id+'" onclick="toggleCan(\''+can.id+'\')">'+
     '<div class="can-kart-bg">'+can.e+'</div>'+
     '<div class="can-kart-ust">'+
-      '<div class="can-emoji-wrap '+meta.bgCls+'">'+can.e+'</div>'+
+      '<div class="can-frame '+(meta.frameCls||'')+'">'+can.e+'<div class="can-medal">'+canRozet(can.sev)+'</div></div>'+
       '<div class="can-info">'+
         '<div class="can-isim">'+isim+'</div>'+
         '<div class="can-nuf">🦁 '+can.nuf+' · 💪 '+fmtK(can.guc)+' · ❤️ '+fmtK(can.sag)+'</div>'+
@@ -714,6 +927,7 @@ function hesapla(){
     }
   }
 
+  var topCanGuc=0, topCanSag=0;
   if(mcCap>0){
     var aktifCan = CANAVARLAR.filter(function(c){return canavarSecim[c.id];});
     if(aktifCan.length>0){
@@ -724,12 +938,13 @@ function hesapla(){
     }
   }
 
-  var gsUsed=0, mcUsed=0, flyCount=0;
+  var gsUsed=0, mcUsed=0, flyCount=0, topGuc=0, topSag=0, statEksik=false;
   MUHAFIZ.forEach(function(b){
     muhafizSecim[b.id].forEach(function(sev){
       var c=counts[b.id+'_'+sev]||0;
       gsUsed += c*b.ldr;
       if(b.tip==='ucan') flyCount += c;
+      if(c>0){ if(b.st && b.st[sev]){ topGuc += c*b.st[sev][0]; topSag += c*b.st[sev][1]; } else statEksik=true; }
     });
   });
   OZEL.forEach(function(b){
@@ -737,14 +952,27 @@ function hesapla(){
       var c=counts[b.id+'_'+sev]||0;
       gsUsed += c*b.ldr;
       if(b.tip==='ucan') flyCount += c;
+      if(c>0){ if(b.st && b.st[sev]){ topGuc += c*b.st[sev][0]; topSag += c*b.st[sev][1]; } else statEksik=true; }
     });
   });
   CANAVARLAR.filter(function(c){return canavarSecim[c.id];}).forEach(function(c){
     var cnt=counts['can_'+c.id]||0;
     mcUsed += cnt*c.nuf;
+    topCanGuc += cnt*c.guc;
+    topCanSag += cnt*c.sag;
   });
 
-  sonuc = {counts:counts, gsUsed:gsUsed, mcUsed:mcUsed, gsRem:gsCap-gsUsed, mcRem:mcCap-mcUsed, gsCap:gsCap, mcCap:mcCap, flyCount:flyCount};
+  var bGuc=gelismis?(parseFloat(document.getElementById('bonus_guc').value)||0):0;
+  var bSag=gelismis?(parseFloat(document.getElementById('bonus_sag').value)||0):0;
+  var eGuc=gelismis?(parseFloat(document.getElementById('ejder_guc').value)||0):0;
+  var eSag=gelismis?(parseFloat(document.getElementById('ejder_sag').value)||0):0;
+  var savGuc=Math.round(topGuc*(1+(bGuc+eGuc)/100));
+  var savSag=Math.round(topSag*(1+(bSag+eSag)/100));
+  var carpan=gelismis?getCarpan():0;
+  var canCarpan=gelismis?getCanCarpan():0;
+  var savVurus=Math.round(topGuc*carpan);
+  var canVurus=Math.round(topCanGuc*canCarpan);
+  sonuc = {counts:counts, gsUsed:gsUsed, mcUsed:mcUsed, gsRem:gsCap-gsUsed, mcRem:mcCap-mcUsed, gsCap:gsCap, mcCap:mcCap, flyCount:flyCount, topGuc:topGuc, topSag:topSag, statEksik:statEksik, bGuc:bGuc, bSag:bSag, eGuc:eGuc, eSag:eSag, savGuc:savGuc, savSag:savSag, carpan:carpan, canCarpan:canCarpan, savVurus:savVurus, canVurus:canVurus, topCanGuc:topCanGuc, topCanSag:topCanSag};
 
   document.getElementById('b-ldr').textContent=fmt(gsUsed);
   document.getElementById('b-ldr-max').textContent=fmt(gsCap);
@@ -758,9 +986,10 @@ function hesapla(){
   showTab('ordu');
 }
 
-function unitRowHTML(e, badgeTxt, name, tag, tip, count, maxCount, copyName, guc, sag){
+function unitRowHTML(e, badgeTxt, name, tag, tip, count, maxCount, copyName, guc, sag, dmg){
   var pct = maxCount>0  ? Math.min(100, count/maxCount*100) : 5;
   var extraRow = (guc!=null) ? ('<div class="unit-tag">💪 '+fmtK(guc)+' · ❤️ '+fmtK(sag)+'</div>') : '';
+  if(dmg!=null) extraRow += '<div class="unit-tag" style="color:var(--brown2)">'+T('vurusLbl')+fmt(dmg)+'</div>';
   return '<div class="unit-row">'+
     '<div class="unit-frame">'+e+'<div class="unit-badge">'+badgeTxt+'</div></div>'+
     '<div class="unit-info">'+
@@ -796,7 +1025,9 @@ function buildOrdu(){
       var isim=N(id);
       var sevler=sec[id].slice().sort(function(a,b){return b-a;});
       var maxC=r.counts[id+'_'+sevler[sevler.length-1]]||c;
-      h+=unitRowHTML(birlik.e, rome, isim, null, birlik.tip, c, maxC, isim+' '+rome);
+      var stv = birlik.st && birlik.st[sev];
+      var dmg = (stv && sonuc && sonuc.carpan>0) ? Math.round(c*stv[0]*sonuc.carpan) : null;
+      h+=unitRowHTML(birlik.e, rome, isim, null, birlik.tip, c, maxC, isim+' '+rome, stv?stv[0]:null, stv?stv[1]:null, dmg);
     });
   });
   h+='</div>';
@@ -824,8 +1055,9 @@ function buildCanavar(){
       var cnt=r.counts['can_'+c.id]||0;
       if(cnt<=0) return;
       any=true;
-      var isim=N(c.base);
-      h+=unitRowHTML(c.e, meta.label, isim, null, null, cnt, maxCntInGroup, isim, c.guc, c.sag);
+      var isim=canAd(c);
+      var cdmg=(sonuc && sonuc.canCarpan>0)?Math.round(cnt*c.guc*sonuc.canCarpan):null;
+      h+=unitRowHTML(c.e, canRozet(c.sev), isim, null, null, cnt, maxCntInGroup, isim, c.guc, c.sag, cdmg);
     });
     h+='</div>';
   });
@@ -843,7 +1075,25 @@ function buildHesapResult(){
     '<div class="sonuc-card"><div class="sonuc-val" style="color:var(--red)">'+fmt(Math.max(0,r.gsRem))+'</div><div class="sonuc-lbl">'+T('ldrKal')+'</div></div>'+
     '<div class="sonuc-card"><div class="sonuc-val" style="color:var(--green2)">'+fmt(r.mcUsed)+'</div><div class="sonuc-lbl">'+T('nufKul')+'</div></div>'+
     '<div class="sonuc-card"><div class="sonuc-val" style="color:var(--red)">'+fmt(Math.max(0,r.mcRem))+'</div><div class="sonuc-lbl">'+T('nufKal')+'</div></div>'+
-    '</div>';
+    ((r.topGuc>0||r.topSag>0) ? (
+      '<div class="sonuc-card"><div class="sonuc-val" style="color:var(--gold2)">'+fmt(r.topGuc)+'</div><div class="sonuc-lbl">'+T('orduGuc')+(r.statEksik?' *':'')+'</div></div>'+
+      '<div class="sonuc-card"><div class="sonuc-val" style="color:var(--green2)">'+fmt(r.topSag)+'</div><div class="sonuc-lbl">'+T('orduSag')+(r.statEksik?' *':'')+'</div></div>'
+    ) : '')+
+    '</div>'+
+    ((r.topGuc>0&&(r.bGuc>0||r.bSag>0||r.eGuc>0||r.eSag>0)) ? (
+    '<div class="sonuc-grid" style="margin-top:8px">'+
+      '<div class="sonuc-card"><div class="sonuc-val" style="color:var(--gold2)">'+fmt(r.savGuc)+'</div><div class="sonuc-lbl">'+T('savGuc')+'</div></div>'+
+      '<div class="sonuc-card"><div class="sonuc-val" style="color:var(--green2)">'+fmt(r.savSag)+'</div><div class="sonuc-lbl">'+T('savSag')+'</div></div>'+
+    '</div>'+
+    '<div style="font-size:11px;color:var(--text3);text-align:center;margin-top:6px">'+T('savNot')+'</div>'
+    ) : '')+
+    (((r.carpan>0&&r.topGuc>0)||(r.canCarpan>0&&r.topCanGuc>0)) ? (
+    '<div class="sonuc-grid" style="margin-top:8px">'+
+      ((r.carpan>0&&r.topGuc>0)?'<div class="sonuc-card" style="grid-column:1/-1"><div class="sonuc-val" style="color:var(--gold2)">'+fmt(r.savVurus)+'</div><div class="sonuc-lbl">'+T('savVurus')+(r.statEksik?' *':'')+'</div></div>':'')+
+      ((r.canCarpan>0&&r.topCanGuc>0)?'<div class="sonuc-card" style="grid-column:1/-1"><div class="sonuc-val" style="color:var(--red)">'+fmt(r.canVurus)+'</div><div class="sonuc-lbl">'+T('canVurus')+'</div></div>':'')+
+    '</div>'
+    ) : '')+
+    ((r.statEksik&&(r.topGuc>0||r.topSag>0))?'<div style="font-size:11px;color:var(--text3);text-align:center;margin-top:6px">'+T('statNot')+'</div>':'');
 }
 
 function tumMetinOlustur(){
@@ -882,7 +1132,7 @@ function tumMetinOlustur(){
       txt+='【M'+sev+'】'+NL;
       sevCan.forEach(function(c){
         var cnt=r.counts['can_'+c.id]||0;
-        txt+='  '+N(c.base)+': '+fmt(cnt)+NL;
+        txt+='  '+canAd(c)+': '+fmt(cnt)+NL;
       });
     });
   }
@@ -970,6 +1220,12 @@ function applyLang(){
     'lbl-ldr':'lblLdr','lbl-nuf':'lblNuf','lbl-oran':'lblOran',
     'lbl-us':'lblUs','lbl-sp':'lblSp','lbl-of':'lblOf',
     'lbl-muh':'lblMuh','lbl-ozel':'lblOzel','lbl-cansec':'lblCanSec',
+    'lbl-bonus':'lblBonus','lbl-bguc':'lblBGuc','lbl-bsag':'lblBSag','lbl-sav':'lblSav',
+    'sav-1':'sav1','sav-3':'sav3','sav-4':'sav4',
+    'lbl-gelismis':'lblGelismis','lbl-carpan':'lblCarpan','lbl-cancarpan':'lblCanCarpan',
+    'lbl-ejder':'lblEjder','lbl-eguc':'lblEGuc','lbl-esag':'lblESag','lbl-carpanlar':'lblCarpanlar','lbl-cbul':'lblCBul',
+    'lbl-cb-birlik':'lblCbBirlik','lbl-cb-adet':'lblCbAdet','lbl-cb-hasar':'lblCbHasar',
+    'lbl-cb-ek':'lblCbEk','lbl-cb-ikikat':'lblCbIkikat','lbl-cb-hesapla':'lblCbHesapla',
     'btn-hesap':'calcBtn','btn-temizle':'btnTemizle','btn-paylas':'btnPaylas','btn-git':'btnGit',
     'empty-hes-txt':'emptyHes','empty-ordu-txt':'emptyOrdu','empty-can-txt':'emptyOrdu'
   };
@@ -979,11 +1235,25 @@ function applyLang(){
   });
   document.getElementById('gs_cap').placeholder=T('phLdr');
   document.getElementById('mc_cap').placeholder=T('phNuf');
+  buildCarpanSelect();
 }
 
 function resetAll(){
   document.getElementById('gs_cap').value='';
   document.getElementById('mc_cap').value='';
+  document.getElementById('bonus_guc').value='';
+  document.getElementById('bonus_sag').value='';
+  document.getElementById('carpan').value='';
+  document.getElementById('can_carpan').value='';
+  document.getElementById('ejder_guc').value='';
+  document.getElementById('ejder_sag').value='';
+  document.getElementById('cb_adet').value='';
+  document.getElementById('cb_hasar').value='';
+  document.getElementById('cb_ek').value='';
+  document.getElementById('cb_ikikat').classList.remove('active');
+  document.getElementById('cb_sonuc').textContent='';
+  if(gelismis) toggleGelismis();
+  setSavReset();
   MUHAFIZ.forEach(function(b){ muhafizSecim[b.id] = (b.sevler.join()==='1,2') ? [1,2] : []; });
   OZEL.forEach(function(b){ ozelSecim[b.id] = (b.sevler.join()==='1,2') ? [1,2] : []; });
   CANAVARLAR.forEach(function(c){ canavarSecim[c.id] = (c.sev>=7); });
