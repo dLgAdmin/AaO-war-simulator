@@ -553,8 +553,8 @@ var SEV_META = {
 var ROME = ['','I','II','III','IV','V','VI','VII'];
 
 var muhafizSecim = {}, ozelSecim = {}, canavarSecim = {};
-MUHAFIZ.forEach(function(b){ muhafizSecim[b.id] = b.sevler.slice(-2); });
-OZEL.forEach(function(b){ ozelSecim[b.id] = b.sevler.slice(-2); });
+MUHAFIZ.forEach(function(b){ muhafizSecim[b.id] = (b.sevler.join()==='1,2') ? [1,2] : []; });
+OZEL.forEach(function(b){ ozelSecim[b.id] = (b.sevler.join()==='1,2') ? [1,2] : []; });
 CANAVARLAR.forEach(function(c){ canavarSecim[c.id] = (c.sev>=7); });
 
 function fmt(n){return Math.round(Math.max(0,n)).toLocaleString(LOCALE[lang]||'en-US');}
@@ -984,8 +984,8 @@ function applyLang(){
 function resetAll(){
   document.getElementById('gs_cap').value='';
   document.getElementById('mc_cap').value='';
-  MUHAFIZ.forEach(function(b){ muhafizSecim[b.id] = b.sevler.slice(-2); });
-  OZEL.forEach(function(b){ ozelSecim[b.id] = b.sevler.slice(-2); });
+  MUHAFIZ.forEach(function(b){ muhafizSecim[b.id] = (b.sevler.join()==='1,2') ? [1,2] : []; });
+  OZEL.forEach(function(b){ ozelSecim[b.id] = (b.sevler.join()==='1,2') ? [1,2] : []; });
   CANAVARLAR.forEach(function(c){ canavarSecim[c.id] = (c.sev>=7); });
   sonuc=null;
   ['b-ldr','b-fly','b-nuf'].forEach(function(id){document.getElementById(id).textContent='0';});
