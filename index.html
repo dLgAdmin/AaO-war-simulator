@@ -92,22 +92,35 @@ body.rtl-text .lang-check{margin-left:0;margin-right:auto;}
 .step-btn{flex:1;min-width:0;padding:7px 3px;border:2px solid var(--gold);border-radius:4px;background:rgba(255,255,255,0.4);font-family:'Cinzel',serif;font-size:11px;color:var(--text2);cursor:pointer;text-align:center;}
 .step-btn.active{background:linear-gradient(180deg,var(--gold2),var(--gold));color:var(--brown);border-color:var(--brown2);font-weight:700;}
 
+.pgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin:4px 0 6px;}
+.pcard{position:relative;aspect-ratio:1;border:3px solid var(--gold);border-radius:7px;overflow:hidden;cursor:pointer;background:#2c1a08;box-shadow:0 2px 5px rgba(0,0,0,0.35);}
+.pcard img,.pcard .u-img{width:100%!important;height:100%!important;object-fit:cover;display:block;}
+.pcard .p-emoji{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:34px;}
+.pcard.active{border-color:#e01212;box-shadow:0 0 0 3px #e01212,0 0 14px rgba(224,18,18,0.85);}
+.pbadge{position:absolute;top:3px;left:3px;min-width:22px;height:22px;padding:0 3px;background:radial-gradient(circle at 35% 30%,#4a9a24,#1e5210);color:#fff8e0;border:2px solid #d8b050;border-radius:11px;font-size:10px;font-weight:800;display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;box-shadow:0 1px 3px rgba(0,0,0,0.6);}
+.pgap{grid-column:1/-1;height:6px;}
+.pgap.buyuk{height:26px;border-bottom:1px solid rgba(139,94,26,0.35);margin-bottom:14px;}
+.grup-alt-baslik{font-family:'Cinzel',serif;font-size:11px;font-weight:700;color:var(--brown2);margin:8px 2px 5px;letter-spacing:0.5px;}
+.grup-alt-baslik.dim{color:var(--text3);opacity:0.85;}
+.u-img{width:26px;height:26px;object-fit:cover;border-radius:4px;vertical-align:middle;}
+.unit-frame .u-img{width:34px;height:34px;}
+.unit-tot{font-size:12.5px;font-weight:700;line-height:1.35;}
 /* SEÇİM (birlik seviye seçimi) */
 .secim-block{background:var(--parch);padding:10px 12px;border-bottom:1px solid rgba(139,94,26,0.3);}
 .secim-title{font-family:'Cinzel',serif;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3);margin-bottom:8px;}
 .birlik-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:6px;}
 .birlik-kart{border:2px solid var(--gold);border-radius:6px;padding:8px;background:rgba(255,255,255,0.3);cursor:pointer;}
-.birlik-kart.active{background:linear-gradient(135deg,rgba(200,150,60,0.3),rgba(200,150,60,0.1));border-color:var(--brown2);}
+.birlik-kart.active{background:linear-gradient(135deg,rgba(192,32,32,0.18),rgba(192,32,32,0.05));border-color:var(--red2);box-shadow:0 0 10px rgba(192,32,32,0.55);}
 .birlik-kart-ust{display:flex;align-items:center;gap:6px;margin-bottom:6px;}
 .birlik-kart-icon{font-size:22px;width:30px;text-align:center;}
 .birlik-kart-isim{font-family:'Cinzel',serif;font-size:9.5px;color:var(--text2);font-weight:700;line-height:1.3;}
 .sev-satir{display:flex;gap:3px;flex-wrap:wrap;}
 .sev-btn{padding:4px 7px;border:1.5px solid var(--gold);border-radius:3px;background:rgba(255,255,255,0.3);font-family:'Cinzel',serif;font-size:9px;color:var(--text3);cursor:pointer;}
-.sev-btn.active{background:linear-gradient(180deg,var(--gold2),var(--gold));color:var(--brown);border-color:var(--brown2);font-weight:700;}
+.sev-btn.active{background:var(--red2);color:#fff;border-color:var(--red);box-shadow:0 0 6px rgba(192,32,32,0.6);}
 
 /* CANAVAR SEÇİM */
 .can-kart{border:2px solid var(--gold);border-radius:8px;padding:8px;background:rgba(255,255,255,0.25);cursor:pointer;position:relative;overflow:hidden;}
-.can-kart.active{background:linear-gradient(135deg,rgba(200,150,60,0.35),rgba(200,150,60,0.12));border-color:var(--brown2);}
+.can-kart.active{border-color:var(--red2);box-shadow:0 0 10px rgba(192,32,32,0.55);background:linear-gradient(135deg,rgba(192,32,32,0.15),rgba(192,32,32,0.04));}
 .can-kart-bg{position:absolute;top:0;right:0;font-size:50px;opacity:0.08;transform:translate(5px,-5px);}
 .can-kart-ust{display:flex;align-items:flex-start;gap:6px;margin-bottom:5px;}
 .can-emoji-wrap{width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:26px;border-radius:6px;flex-shrink:0;}
@@ -251,12 +264,22 @@ body.rtl-text .tip-badge{margin-right:0;margin-left:4px;}
   <div class="cap-area">
     <div class="cap-row">
       <div class="cap-field">
-        <span class="cap-label" id="lbl-ldr">⚔️ Toplam Liderlik</span>
+        <span class="cap-label" id="lbl-ldr">🪖 Liderlik</span>
         <input type="number" class="cap-input" id="gs_cap" placeholder="örn. 372324" inputmode="numeric">
       </div>
       <div class="cap-field">
-        <span class="cap-label" id="lbl-nuf">🦁 Toplam Nüfuz</span>
+        <span class="cap-label" id="lbl-oto">🦅 Otorite</span>
+        <input type="number" class="cap-input" id="oto_cap" placeholder="örn. 1500" inputmode="numeric">
+      </div>
+    </div>
+    <div class="cap-row" style="margin-top:8px">
+      <div class="cap-field">
+        <span class="cap-label" id="lbl-nuf">🦁 Nüfuz</span>
         <input type="number" class="cap-input" id="mc_cap" placeholder="örn. 76147" inputmode="numeric">
+      </div>
+      <div class="cap-field">
+        <span class="cap-label" id="lbl-ep">🛡️ Epik Canavar Gücü</span>
+        <input type="number" class="cap-input" id="ep_guc" placeholder="örn. 2485" inputmode="decimal" step="any">
       </div>
     </div>
   </div>
@@ -267,8 +290,8 @@ body.rtl-text .tip-badge{margin-right:0;margin-left:4px;}
       <div class="slider-steps">
         <button class="step-btn" onclick="setOran(1.7)" id="oran-1.7">1.70</button>
         <button class="step-btn" onclick="setOran(1.75)" id="oran-1.75">1.75</button>
-        <button class="step-btn" onclick="setOran(1.8)" id="oran-1.8">1.80</button>
-        <button class="step-btn active" onclick="setOran(1.85)" id="oran-1.85">1.85</button>
+        <button class="step-btn active" onclick="setOran(1.8)" id="oran-1.8">1.80</button>
+        <button class="step-btn" onclick="setOran(1.85)" id="oran-1.85">1.85</button>
         <button class="step-btn" onclick="setOran(1.9)" id="oran-1.9">1.90</button>
         <button class="step-btn" onclick="setOran(1.95)" id="oran-1.95">1.95</button>
         <button class="step-btn" onclick="setOran(2.0)" id="oran-2.0">2.00</button>
@@ -317,84 +340,9 @@ body.rtl-text .tip-badge{margin-right:0;margin-left:4px;}
     </div>
   </div>
 
-  <div class="slider-section" style="margin-top:10px">
-    <div class="slider-row" style="margin-bottom:0">
-      <button class="step-btn" id="gelismis-btn" onclick="toggleGelismis()" style="width:100%">⚙️ <span id="lbl-gelismis">Gelişmiş Mod — Hasar Çarpanı (isteğe bağlı)</span></button>
-    </div>
-    <div id="gelismis-alan" style="display:none;margin-top:10px">
-      <div class="slider-label"><span id="lbl-bonus">🎖 Kişisel Bonuslar (komutan · kahraman · ekipman)</span></div>
-      <div class="cap-row" style="margin-top:6px">
-        <div class="cap-field">
-          <span class="cap-label" id="lbl-bguc">💪 Güç Bonusu (%)</span>
-          <input type="number" class="cap-input" id="bonus_guc" placeholder="örn. 93" inputmode="numeric">
-        </div>
-        <div class="cap-field">
-          <span class="cap-label" id="lbl-bsag">❤️ Sağlık Bonusu (%)</span>
-          <input type="number" class="cap-input" id="bonus_sag" placeholder="örn. 50" inputmode="numeric">
-        </div>
-      </div>
-      <div class="slider-label" style="margin-top:12px"><span id="lbl-ejder">🐉 Ejderha Bonusu (seviyesine göre)</span></div>
-      <div class="cap-row" style="margin-top:6px">
-        <div class="cap-field">
-          <span class="cap-label" id="lbl-eguc">💪 Ordu Gücü (%)</span>
-          <input type="number" class="cap-input" id="ejder_guc" placeholder="örn. 160" inputmode="numeric">
-        </div>
-        <div class="cap-field">
-          <span class="cap-label" id="lbl-esag">❤️ Ordu Sağlığı (%)</span>
-          <input type="number" class="cap-input" id="ejder_sag" placeholder="örn. 160" inputmode="numeric">
-        </div>
-      </div>
-      <div class="slider-label" style="margin-top:12px"><span id="lbl-carpanlar">🗡 Savaş Çarpanları (rapordan)</span></div>
-      <div class="cap-row" style="margin-top:6px">
-        <div class="cap-field">
-          <span class="cap-label" id="lbl-carpan">⚔️ Birlik Çarpanı</span>
-          <input type="number" class="cap-input" id="carpan" placeholder="örn. 35,27" inputmode="decimal" step="any">
-        </div>
-        <div class="cap-field">
-          <span class="cap-label" id="lbl-cancarpan">🐉 Canavar Çarpanı</span>
-          <input type="number" class="cap-input" id="can_carpan" placeholder="örn. 36,27" inputmode="decimal" step="any">
-        </div>
-      </div>
-      <div class="slider-label" style="margin-top:12px"><span id="lbl-cbul">🔎 Çarpanımı Bul — savaş raporundan hesapla</span></div>
-      <div class="cap-row" style="margin-top:6px">
-        <div class="cap-field">
-          <span class="cap-label" id="lbl-cb-birlik">Birlik</span>
-          <select class="cap-input" id="cb_birlik"></select>
-        </div>
-        <div class="cap-field">
-          <span class="cap-label" id="lbl-cb-adet">Manga adedi</span>
-          <input type="number" class="cap-input" id="cb_adet" placeholder="örn. 30693" inputmode="numeric">
-        </div>
-      </div>
-      <div class="cap-row" style="margin-top:6px">
-        <div class="cap-field">
-          <span class="cap-label" id="lbl-cb-hasar">Rapordaki toplam hasar</span>
-          <input type="number" class="cap-input" id="cb_hasar" placeholder="örn. 4366367764" inputmode="numeric">
-        </div>
-        <div class="cap-field">
-          <span class="cap-label" id="lbl-cb-ek">Ek hasar (varsa)</span>
-          <input type="number" class="cap-input" id="cb_ek" placeholder="örn. 1053788908" inputmode="numeric">
-        </div>
-      </div>
-      <div class="slider-steps" style="margin-top:8px">
-        <button class="step-btn" id="cb_ikikat" onclick="this.classList.toggle('active')">×2 <span id="lbl-cb-ikikat">iki kat hasar yazıyorsa işaretle</span></button>
-        <button class="step-btn" id="cb_hesapla" onclick="carpanBul()" style="font-weight:bold">🔎 <span id="lbl-cb-hesapla">Çarpanı Hesapla</span></button>
-      </div>
-      <div id="cb_sonuc" style="font-size:12px;color:var(--text2);text-align:center;margin-top:8px"></div>
-    </div>
-  </div>
-
-  <div class="secim-block">
-    <div class="secim-title" id="lbl-muh">🛡 Muhafız Birlikleri — Seviye Seç</div>
-    <div class="birlik-grid" id="muhafiz-grid"></div>
-  </div>
-  <div class="secim-block">
-    <div class="secim-title" id="lbl-ozel">⚔️ Özel Birlikler — Seviye Seç</div>
-    <div class="birlik-grid" id="ozel-grid"></div>
-  </div>
-  <div class="secim-block">
-    <div class="secim-title" id="lbl-cansec">🐉 Canavarlar — Seç</div>
-    <div id="canavar-grid"></div>
+    <div class="secim-block">
+    <div class="secim-title" id="lbl-sectroops">⚔️ Kullanılacak Birlikleri Seç</div>
+    <div id="pgrid-tum" class="pgrid"></div>
   </div>
 
   <div style="padding:10px 12px;">
@@ -424,7 +372,7 @@ body.rtl-text .tip-badge{margin-right:0;margin-left:4px;}
 <div class="bottom-bar">
   <div class="bottom-stats">
     <div class="bstat"><span>⚔️</span><span class="bstat-val" id="b-ldr">0</span><span class="bstat-max">/<span id="b-ldr-max">0</span></span></div>
-    <div class="bstat"><span>🦅</span><span class="bstat-val" id="b-fly">0</span></div>
+    <div class="bstat"><span>🦅</span><span class="bstat-val" id="b-oto">0</span><span class="bstat-max">/<span id="b-oto-max">0</span></span></div>
     <div class="bstat"><span>🦁</span><span class="bstat-val" id="b-nuf">0</span><span class="bstat-max">/<span id="b-nuf-max">0</span></span></div>
   </div>
   <div class="bottom-btns">
@@ -450,6 +398,17 @@ var LANGS = [
 var LOCALE = {tr:'tr-TR', en:'en-US', de:'de-DE', fr:'fr-FR', es:'es-ES', ru:'ru-RU', pt:'pt-PT', ar:'ar-SA'};
 
 var TXT = {
+  secTroops:{tr:'⚔️ Kullanılacak Birlikleri Seç',en:'⚔️ Select Troops to Use',de:'⚔️ Truppen Wählen',fr:'⚔️ Choisir les Troupes',es:'⚔️ Elegir Tropas',ru:'⚔️ Выбор войск',pt:'⚔️ Selecionar Tropas',ar:'⚔️ اختر القوات'},
+  tipKusatma:{tr:'💣 Kuşatma',en:'💣 Siege',de:'💣 Belagerung',fr:'💣 Siège',es:'💣 Asedio',ru:'💣 Осада',pt:'💣 Cerco',ar:'💣 حصار'},
+  gorselliGrup:{tr:'★ Görselli Birlikler',en:'★ Units with Portraits',de:'★ Einheiten mit Porträts',fr:'★ Unités avec Portraits',es:'★ Unidades con Retratos',ru:'★ Юниты с портретами',pt:'★ Unidades com Retratos',ar:'★ وحدات بصور'},
+  altSevGrup:{tr:'Alt Seviyeler (resimsiz)',en:'Lower Tiers (no image)',de:'Untere Stufen (ohne Bild)',fr:'Niveaux Inférieurs (sans image)',es:'Niveles Inferiores (sin imagen)',ru:'Низшие уровни (без картинки)',pt:'Níveis Inferiores (sem imagem)',ar:'المستويات الدنيا (بدون صورة)'},
+  lblOto:{tr:'🦅 Otorite',en:'🦅 Authority',de:'🦅 Autorität',fr:'🦅 Autorité',es:'🦅 Autoridad',ru:'🦅 Власть',pt:'🦅 Autoridade',ar:'🦅 السلطة'},
+  lblEp:{tr:'🛡️ Epik Canavar Gücü',en:'🛡️ Epic Monster Strength',de:'🛡️ Epische Monsterstärke',fr:'🛡️ Force Monstre Épique',es:'🛡️ Fuerza Monstruo Épico',ru:'🛡️ Сила против эпич. монстров',pt:'🛡️ Força Monstro Épico',ar:'🛡️ قوة الوحوش الملحمية'},
+  lblPas:{tr:'🦅 Paralı Askerler — Seç',en:'🦅 Mercenaries — Select',de:'🦅 Söldner — Wählen',fr:'🦅 Mercenaires — Choisir',es:'🦅 Mercenarios — Elegir',ru:'🦅 Наёмники — Выбор',pt:'🦅 Mercenários — Selecionar',ar:'🦅 المرتزقة — اختر'},
+  pasBaslik:{tr:'🦅 PARALI ASKERLER',en:'🦅 MERCENARIES',de:'🦅 SÖLDNER',fr:'🦅 MERCENAIRES',es:'🦅 MERCENARIOS',ru:'🦅 НАЁМНИКИ',pt:'🦅 MERCENÁRIOS',ar:'🦅 المرتزقة'},
+  otoKul:{tr:'Otorite Kullanılan',en:'Authority Used',de:'Autorität Genutzt',fr:'Autorité Utilisée',es:'Autoridad Usada',ru:'Власть исп.',pt:'Autoridade Usada',ar:'السلطة المستخدمة'},
+  otoKal:{tr:'Otorite Kalan',en:'Authority Left',de:'Autorität Übrig',fr:'Autorité Restante',es:'Autoridad Restante',ru:'Власть ост.',pt:'Autoridade Restante',ar:'السلطة المتبقية'},
+  epLbl:{tr:'Epik Canavar Gücü',en:'Epic Monster Strength',de:'Epische Monsterstärke',fr:'Force Monstre Épique',es:'Fuerza Monstruo Épico',ru:'Сила против эпич. монстров',pt:'Força Monstro Épico',ar:'قوة الوحوش الملحمية'},
   tabHesap:{tr:'HESAPLA',en:'CALCULATE',de:'BERECHNEN',fr:'CALCULER',es:'CALCULAR',ru:'РАСЧЁТ',pt:'CALCULAR',ar:'احسب'},
   tabOrdu:{tr:'ORDU',en:'ARMY',de:'ARMEE',fr:'ARMÉE',es:'EJÉRCITO',ru:'АРМИЯ',pt:'EXÉRCITO',ar:'الجيش'},
   tabCan:{tr:'CANAVARLAR',en:'MONSTERS',de:'MONSTER',fr:'MONSTRES',es:'MONSTRUOS',ru:'МОНСТРЫ',pt:'MONSTROS',ar:'الوحوش'},
@@ -537,31 +496,32 @@ var TXT = {
 function T(k){return (TXT[k] && (TXT[k][lang]||TXT[k]['en'])) || k;}
 
 var NAMES = {
-  kuzgun:{tr:'Kuzgun',en:'Raven',de:'Rabe',fr:'Corbeau',es:'Cuervo',ru:'Ворон',pt:'Corvo',ar:'الغراب'},
-  sgrifon:{tr:'Savaş Grifonu',en:'War Gryphon',de:'Kriegsgreif',fr:'Griffon de Guerre',es:'Grifo de Guerra',ru:'Боевой Грифон',pt:'Grifo de Guerra',ar:'غريفون الحرب'},
-  aslaner:{tr:'Aslaner',en:'Aslaner',de:'Aslaner',fr:'Aslaner',es:'Aslaner',ru:'Асланер',pt:'Aslaner',ar:'أسلانر'},
+  josephine:{tr:'Josephine (Dev Topçu)',en:'Josephine',de:'Josephine',fr:'Joséphine',es:'Josephine',ru:'Жозефина',pt:'Josephine',ar:'جوزفين'},
+  kuzgun:{tr:'Kuzgun',en:'Corax',de:'Rabe',fr:'Corbeau',es:'Cuervo',ru:'Ворон',pt:'Corvo',ar:'الغراب'},
+  sgrifon:{tr:'Savaş Grifonu',en:'Battle Griffin',de:'Kriegsgreif',fr:'Griffon de Guerre',es:'Grifo de Guerra',ru:'Боевой Грифон',pt:'Grifo de Guerra',ar:'غريفون الحرب'},
+  aslaner:{tr:'Aslaner',en:'Royal Lion',de:'Aslaner',fr:'Aslaner',es:'Aslaner',ru:'Асланер',pt:'Aslaner',ar:'أسلانر'},
   akbaba:{tr:'Akbaba',en:'Vulture',de:'Geier',fr:'Vautour',es:'Buitre',ru:'Стервятник',pt:'Abutre',ar:'النسر الكاسر'},
   cez:{tr:'Cezalandırıcı',en:'Punisher',de:'Bestrafer',fr:'Punisseur',es:'Castigador',ru:'Каратель',pt:'Punidor',ar:'المعاقب'},
   binici:{tr:'Binici',en:'Rider',de:'Reiter',fr:'Cavalier',es:'Jinete',ru:'Всадник',pt:'Cavaleiro',ar:'الفارس'},
-  atlisov:{tr:'Atlı Şövalye',en:'Knight',de:'Ritter',fr:'Chevalier',es:'Caballero',ru:'Рыцарь',pt:'Cavaleiro Montado',ar:'فارس النبلاء'},
-  akyele:{tr:'Akyele',en:'Akyele',de:'Akyele',fr:'Akyele',es:'Akyele',ru:'Акйеле',pt:'Akyele',ar:'أكييلي'},
+  atlisov:{tr:'Atlı Şövalye',en:'Mounted Knight',de:'Ritter',fr:'Chevalier',es:'Caballero',ru:'Рыцарь',pt:'Cavaleiro Montado',ar:'فارس النبلاء'},
+  akyele:{tr:'Akyele',en:'Whitemane',de:'Akyele',fr:'Akyele',es:'Akyele',ru:'Акйеле',pt:'Akyele',ar:'أكييلي'},
   aslanbin:{tr:'Aslan Binicisi',en:'Lion Rider',de:'Löwenreiter',fr:'Cavalier Lion',es:'Jinete León',ru:'Наездник на Льве',pt:'Cavaleiro Leão',ar:'فارس الأسود'},
   arin:{tr:'Arındırıcı',en:'Purifier',de:'Reiniger',fr:'Purificateur',es:'Purificador',ru:'Очиститель',pt:'Purificador',ar:'المطهِّر'},
   okcu:{tr:'Okçu',en:'Archer',de:'Bogenschütze',fr:'Archer',es:'Arquero',ru:'Лучник',pt:'Arqueiro',ar:'الرامي'},
-  agirarb:{tr:'Ağır Arbaletli',en:'Heavy Crossbow',de:'Schwere Armbrust',fr:'Arbalétrier Lourd',es:'Ballestero Pesado',ru:'Тяжёлый Арбалетчик',pt:'Besteiro Pesado',ar:'الرامي الثقيل'},
+  agirarb:{tr:'Ağır Arbaletli',en:'Heavy Arbalester',de:'Schwere Armbrust',fr:'Arbalétrier Lourd',es:'Ballestero Pesado',ru:'Тяжёлый Арбалетчик',pt:'Besteiro Pesado',ar:'الرامي الثقيل'},
   mes:{tr:'Meşruiyetçi',en:'Legitimist',de:'Legitimist',fr:'Légitimiste',es:'Legitimista',ru:'Легитимист',pt:'Legitimista',ar:'الشرعي'},
-  keskin:{tr:'Keskin Nişancı',en:'Sharpshooter',de:'Scharfschütze',fr:"Tireur d'Élite",es:'Francotirador',ru:'Снайпер',pt:'Atirador de Elite',ar:'القناص'},
-  cellat:{tr:'Cellat',en:'Executioner',de:'Henker',fr:'Bourreau',es:'Verdugo',ru:'Палач',pt:'Carrasco',ar:'الجلاد'},
+  keskin:{tr:'Keskin Nişancı',en:'Deadshot',de:'Scharfschütze',fr:"Tireur d'Élite",es:'Francotirador',ru:'Снайпер',pt:'Atirador de Elite',ar:'القناص'},
+  cellat:{tr:'Cellat',en:'Smiter',de:'Henker',fr:'Bourreau',es:'Verdugo',ru:'Палач',pt:'Carrasco',ar:'الجلاد'},
   mizrak:{tr:'Mızrakçı',en:'Spearman',de:'Speerträger',fr:'Lancier',es:'Lancero',ru:'Копейщик',pt:'Lanceiro',ar:'الرمّاح'},
-  agirteb:{tr:'Ağır Teb. Piy.',en:'Heavy Inf.',de:'Schwere Infanterie',fr:'Infanterie Lourde',es:'Infantería Pesada',ru:'Тяжёлая Пехота',pt:'Infantaria Pesada',ar:'مشاة ثقيلة'},
+  agirteb:{tr:'Ağır Teberli Piyade',en:'Heavy Halberdier',de:'Schwere Infanterie',fr:'Infanterie Lourde',es:'Infantería Pesada',ru:'Тяжёлая Пехота',pt:'Infantaria Pesada',ar:'مشاة ثقيلة'},
   duel:{tr:'Düellocu',en:'Duelist',de:'Duellant',fr:'Duelliste',es:'Duelista',ru:'Дуэлянт',pt:'Duelista',ar:'المبارز'},
   kilicli:{tr:'Kılıçlı Piyade',en:'Sword Infantry',de:'Schwertinfanterie',fr:"Infanterie d'Épée",es:'Infantería de Espada',ru:'Мечевая Пехота',pt:'Infantaria de Espada',ar:'مشاة السيوف'},
   agirkov:{tr:'Ağır Şövalye',en:'Heavy Knight',de:'Schwerer Ritter',fr:'Chevalier Lourd',es:'Caballero Pesado',ru:'Тяжёлый Рыцарь',pt:'Cavaleiro Pesado',ar:'الفارس الثقيل'},
   kraken:{tr:'Kraken',en:'Kraken',de:'Kraken',fr:'Kraken',es:'Kraken',ru:'Кракен',pt:'Kraken',ar:'الكراكن'},
-  zumru:{tr:'Ateşli Zümrüdüanka',en:'Blazing Phoenix',de:'Lodernder Phönix',fr:'Phénix Ardent',es:'Fénix Ardiente',ru:'Пылающий Феникс',pt:'Fênix Ardente',ar:'العنقاء المشتعلة'},
-  tahrip:{tr:'Tahripkar',en:'Destroyer',de:'Zerstörer',fr:'Destructeur',es:'Destructor',ru:'Разрушитель',pt:'Destruidor',ar:'المدمِّر'},
+  zumru:{tr:'Ateşli Zümrüdüanka',en:'Fire Phoenix',de:'Lodernder Phönix',fr:'Phénix Ardent',es:'Fénix Ardiente',ru:'Пылающий Феникс',pt:'Fênix Ardente',ar:'العنقاء المشتعلة'},
+  tahrip:{tr:'Tahripkar',en:'Devastator',de:'Zerstörer',fr:'Destructeur',es:'Destructor',ru:'Разрушитель',pt:'Destruidor',ar:'المدمِّر'},
   hileb:{tr:'Hilebaz',en:'Trickster',de:'Trickser',fr:'Filou',es:'Embaucador',ru:'Хитрец',pt:'Embusteiro',ar:'المخادع'},
-  kolosus:{tr:'Yıkıcı Kolosus',en:'Ravaging Colossus',de:'Verwüstender Koloss',fr:'Colosse Ravageur',es:'Coloso Devastador',ru:'Разрушительный Колосс',pt:'Colosso Devastador',ar:'المارد المدمِّر'},
+  kolosus:{tr:'Yıkıcı Kolosus',en:'Destructive Colossus',de:'Verwüstender Koloss',fr:'Colosse Ravageur',es:'Coloso Devastador',ru:'Разрушительный Колосс',pt:'Colosso Devastador',ar:'المارد المدمِّر'},
   karejd:{tr:'Kara Ejderha',en:'Black Dragon',de:'Schwarzer Drache',fr:'Dragon Noir',es:'Dragón Negro',ru:'Чёрный Дракон',pt:'Dragão Negro',ar:'التنين الأسود'},
   ruzgar:{tr:'Rüzgar Lordu',en:'Wind Lord',de:'Windfürst',fr:'Seigneur du Vent',es:'Señor del Viento',ru:'Повелитель Ветра',pt:'Senhor do Vento',ar:'سيد الرياح'},
   antik:{tr:'Antik Terör',en:'Ancient Terror',de:'Antiker Terror',fr:'Terreur Antique',es:'Terror Antiguo',ru:'Древний Ужас',pt:'Terror Antigo',ar:'الرعب القديم'},
@@ -584,36 +544,65 @@ var NAMES = {
 };
 function N(base){return (NAMES[base] && (NAMES[base][lang]||NAMES[base]['en'])) || base;}
 
+/* ============ PARALI ASKERLER (Otorite) ============ */
+var PARALI = [
+  {id:'p_ejder',    img:'p_m00', tr:'Ejder',                         en:'Dragon',                     e:'🐉', oto:63, guc:690000, sag:2070000},
+  {id:'p_gardiyan', img:'p_m01', tr:'Gardiyan',                      en:'Warden',                     e:'🦌', oto:43, guc:470000, sag:1410000},
+  {id:'p_ebeditop', img:'p_m02', tr:'Ebedi Topçu',                   en:'Eternal Cannoneer',          e:'💣', oto:40, guc:440000, sag:1320000},
+  {id:'p_semender', img:'p_m03', tr:'Şeytani Semender',              en:'Infernal Salamander',        e:'🦎', oto:38, guc:410000, sag:1230000},
+  {id:'p_avci',     img:'p_m04', tr:'Kıdemli Epik Canavar Avcısı',   en:'Senior Epic Monster Hunter', e:'🎯', oto:1,  guc:25000,  sag:75000},
+  {id:'p_savsoylu', img:'p_m05', tr:'Savaş Soylusu',                 en:'War Noble',                  e:'🦅', oto:20, guc:220000, sag:660000},
+  {id:'p_jago',     img:'p_m06', tr:'Jago',                          en:'Jago',                       e:'🦜', oto:20, guc:220000, sag:660000},
+  {id:'p_dagadam',  img:'p_m07', tr:'Dağ Adamı',                     en:'Highlander',                 e:'⛰️', oto:1,  guc:11000,  sag:33000},
+  {id:'p_dizginci', img:'p_m08', tr:'Dizginci',                      en:'Reinsman',                   e:'🐎', oto:2,  guc:22000,  sag:66000},
+  {id:'p_karinca',  img:'p_m09', tr:'Muharebe Karıncayiyeni Lideri', en:'Battle Anteater Leader',     e:'🐜', oto:1,  guc:11400,  sag:34200},
+  {id:'p_grace',    img:'p_m10', tr:'Grace',                         en:'Grace',                      e:'✨', oto:5,  guc:5510,   sag:16530},
+  {id:'p_slav',     img:'p_m11', tr:'Slav Savaşçı',                  en:'Slav Warrior',               e:'🪓', oto:1,  guc:11000,  sag:33000},
+  {id:'p_yaraliyuz',img:'p_m12', tr:'Yaralı Yüz',                    en:'Scarface',                   e:'🗡', oto:1,  guc:11000,  sag:33000},
+  {id:'p_batak',    img:'p_m13', tr:'Batak',                         en:'Batak',                      e:'🐪', oto:2,  guc:22000,  sag:66000},
+  {id:'p_ezici',    img:'p_m14', tr:'Ezici',                         en:'Crusher',                    e:'🔨', oto:1,  guc:11000,  sag:33000},
+  {id:'p_esekarisi',img:'p_m15', tr:'Eşek Arısı Adam Lideri',        en:'Wasp Man Leader',            e:'🐝', oto:1,  guc:10800,  sag:32400},
+  {id:'p_gaddar',   img:'p_m16', tr:'Gaddar İzci Lideri',            en:'Ruthless Scout Leader',      e:'🏹', oto:1,  guc:10600,  sag:31800},
+  {id:'p_ariel',    tr:'Ariel',                                      en:'Ariel',                      e:'🎇', oto:10, guc:55000,  sag:330000},
+  {id:'p_kitin',    tr:'Kitin Muhafızı Lideri',                      en:'Chitin Guard Leader',        e:'🪲', oto:1,  guc:11200,  sag:33600}
+];
+var paraliSecim = {};
+PARALI.forEach(function(p){ paraliSecim[p.id]=false; });
+function PN(p){ return (lang==='tr') ? p.tr : p.en; }
+function ico(id,e){ return '<img class="u-img" src="img/'+id+'.png" alt="" data-e="'+e+'" onerror="this.outerHTML=this.getAttribute(\'data-e\')">'; }
+
 /* ============ GAME DATA (birlik seviyeleri + canavarlar) ============ */
-var secilenOran=1.85, ucanSuvari=10, suvariPiyade=2, ozelFark=7, savasci=1, sonuc=null;
+var secilenOran=1.8, ucanSuvari=10, suvariPiyade=2, ozelFark=7, savasci=1, sonuc=null;
 
 var MUHAFIZ = [
+  {id:'josephine',tip:'kusatma',ldr:1,  e:'💣', sevler:[1,2], st:{1:[15310,91800],2:[27550,165300]}},
   {id:'kuzgun',   tip:'ucan',    ldr:20, e:'🦅', sevler:[1,2], st:{1:[61200,183600],2:[110200,330600]}},
-  {id:'sgrifon',  tip:'ucan',    ldr:20, e:'🦅', sevler:[5,6,7]},
+  {id:'sgrifon',  tip:'ucan',    ldr:20, e:'🦅', sevler:[5,6,7], st:{7:[34000,102000]}},
   {id:'cez',      tip:'suvari',  ldr:2,  e:'🐎', sevler:[1,2], st:{1:[6120,18360],2:[11020,33060]}},
   {id:'binici',   tip:'suvari',  ldr:2,  e:'🐎', sevler:[1,2,3,4,5,6,7]},
-  {id:'atlisov',  tip:'suvari',  ldr:2,  e:'🐴', sevler:[6,7]},
+  {id:'atlisov',  tip:'suvari',  ldr:2,  e:'🐴', sevler:[6,7], st:{7:[3400,10200]}},
   {id:'arin',     tip:'menzilli',ldr:1,  e:'🔫', sevler:[1,2], st:{1:[3060,9180],2:[5510,16530]}},
   {id:'okcu',     tip:'menzilli',ldr:1,  e:'🏹', sevler:[1,2,3,4,5,6]},
-  {id:'agirarb',  tip:'menzilli',ldr:1,  e:'🏹', sevler:[6,7]},
+  {id:'agirarb',  tip:'menzilli',ldr:1,  e:'🏹', sevler:[6,7], st:{7:[1700,5100]}},
   {id:'cellat',   tip:'piyade',  ldr:1,  e:'🪓', sevler:[1,2], st:{1:[3060,9180],2:[5510,16530]}},
   {id:'mizrak',   tip:'piyade',  ldr:1,  e:'🪖', sevler:[1,2,3,4,5]},
-  {id:'agirteb',  tip:'piyade',  ldr:1,  e:'🪓', sevler:[6,7]}
+  {id:'agirteb',  tip:'piyade',  ldr:1,  e:'🪓', sevler:[6,7], st:{7:[1700,5100]}}
 ];
 
 var OZEL = [
   {id:'aslaner',  tip:'ucan',    ldr:20, e:'🦁', sevler:[1,2], st:{1:[61200,183600],2:[110200,330600]}},
-  {id:'akbaba',   tip:'ucan',    ldr:1,  e:'🦅', sevler:[5,6,7]},
+  {id:'akbaba',   tip:'ucan',    ldr:1,  e:'🦅', sevler:[5,6,7], st:{7:[1700,5100]}},
   {id:'akyele',   tip:'suvari',  ldr:2,  e:'🐺', sevler:[1,2], st:{1:[6120,18360],2:[11020,33060]}},
-  {id:'aslanbin', tip:'suvari',  ldr:2,  e:'🦁', sevler:[5,6,7]},
+  {id:'aslanbin', tip:'suvari',  ldr:2,  e:'🦁', sevler:[5,6,7], st:{7:[3400,10200]}},
   {id:'mes',      tip:'menzilli',ldr:1,  e:'🔫', sevler:[1,2], st:{1:[3060,9180],2:[5510,16530]}},
-  {id:'keskin',   tip:'menzilli',ldr:1,  e:'🔫', sevler:[5,6,7]},
+  {id:'keskin',   tip:'menzilli',ldr:1,  e:'🔫', sevler:[5,6,7], st:{7:[1700,5100]}},
   {id:'duel',     tip:'piyade',  ldr:1,  e:'🗡', sevler:[1,2], st:{1:[3060,9180],2:[5510,16530]}},
   {id:'kilicli',  tip:'piyade',  ldr:1,  e:'⚔', sevler:[1,2,3,4,5,6]},
-  {id:'agirkov',  tip:'piyade',  ldr:1,  e:'🛡', sevler:[6,7]}
+  {id:'agirkov',  tip:'piyade',  ldr:1,  e:'🛡', sevler:[6,7], st:{7:[1700,5100]}}
 ];
 
 var ORDU_SIRASI = [
+  {g:'g',id:'josephine'},
   {g:'g',id:'kuzgun'},{g:'s',id:'aslaner'},
   {g:'g',id:'sgrifon'},{g:'s',id:'akbaba'},
   {g:'g',id:'cez'},{g:'s',id:'akyele'},
@@ -671,9 +660,9 @@ var SEV_META = {
 var ROME = ['','I','II','III','IV','V','VI','VII'];
 
 var muhafizSecim = {}, ozelSecim = {}, canavarSecim = {};
-MUHAFIZ.forEach(function(b){ muhafizSecim[b.id] = (b.sevler.join()==='1,2') ? [1,2] : []; });
-OZEL.forEach(function(b){ ozelSecim[b.id] = (b.sevler.join()==='1,2') ? [1,2] : []; });
-CANAVARLAR.forEach(function(c){ canavarSecim[c.id] = (c.sev>=7); });
+MUHAFIZ.forEach(function(b){ muhafizSecim[b.id] = []; });
+OZEL.forEach(function(b){ ozelSecim[b.id] = []; });
+CANAVARLAR.forEach(function(c){ canavarSecim[c.id] = false; });
 
 function fmt(n){return Math.round(Math.max(0,n)).toLocaleString(LOCALE[lang]||'en-US');}
 function canAd(c){ return N(c.base)+(c.sev===8?' I':c.sev===9?' II':''); }
@@ -683,14 +672,18 @@ function fmtK(n){
   if(n>=1e3) return Math.round(n/1e3)+'K';
   return Math.round(n)+'';
 }
-var savProfil = {1:{ldr:'',nuf:''}, 3:{ldr:'',nuf:''}, 4:{ldr:'',nuf:''}};
+var savProfil = {1:{ldr:'',nuf:'',oto:'',ep:''}, 3:{ldr:'',nuf:'',oto:'',ep:''}, 4:{ldr:'',nuf:'',oto:'',ep:''}};
 function savKaydet(){
   savProfil[savasci].ldr = document.getElementById('gs_cap').value;
   savProfil[savasci].nuf = document.getElementById('mc_cap').value;
+  savProfil[savasci].oto = document.getElementById('oto_cap').value;
+  savProfil[savasci].ep  = document.getElementById('ep_guc').value;
 }
 function savYukle(){
   document.getElementById('gs_cap').value = savProfil[savasci].ldr;
   document.getElementById('mc_cap').value = savProfil[savasci].nuf;
+  document.getElementById('oto_cap').value = savProfil[savasci].oto;
+  document.getElementById('ep_guc').value  = savProfil[savasci].ep;
 }
 function savBtnGuncelle(){
   var sv=document.getElementById('sav-val'); if(sv) sv.textContent='';
@@ -699,72 +692,8 @@ function savBtnGuncelle(){
     if(el) el.classList.toggle('active', id==='sav-'+savasci);
   });
 }
-var gelismis=false;
-function toggleGelismis(){
-  gelismis=!gelismis;
-  document.getElementById('gelismis-alan').style.display = gelismis?'block':'none';
-  document.getElementById('gelismis-btn').classList.toggle('active', gelismis);
-  if(sonuc) hesapla();
-}
-function getCarpan(){
-  var v=(document.getElementById('carpan').value||'').replace(',','.');
-  var f=parseFloat(v);
-  return (isFinite(f)&&f>0)?f:0;
-}
-function getCanCarpan(){
-  var v=(document.getElementById('can_carpan').value||'').replace(',','.');
-  var f=parseFloat(v);
-  return (isFinite(f)&&f>0)?f:0;
-}
-function buildCarpanSelect(){
-  var sel=document.getElementById('cb_birlik');
-  if(!sel) return;
-  var h='';
-  MUHAFIZ.concat(OZEL).forEach(function(b){
-    if(!b.st) return;
-    Object.keys(b.st).forEach(function(sev){
-      h+='<option value="'+b.id+'_'+sev+'">'+b.e+' '+N(b.id)+' '+ROME[sev]+'</option>';
-    });
-  });
-  CANAVARLAR.forEach(function(c){
-    if(c.sev<7) return;
-    h+='<option value="can_'+c.id+'">'+c.e+' '+canAd(c)+'</option>';
-  });
-  var cur=sel.value;
-  sel.innerHTML=h;
-  if(cur) sel.value=cur;
-}
-function carpanBul(){
-  var out=document.getElementById('cb_sonuc');
-  var key=document.getElementById('cb_birlik').value;
-  var adet=parseInt(document.getElementById('cb_adet').value)||0;
-  var hasar=parseFloat(document.getElementById('cb_hasar').value)||0;
-  var ek=parseFloat(document.getElementById('cb_ek').value)||0;
-  var ikikat=document.getElementById('cb_ikikat').classList.contains('active');
-  if(!key||adet<=0||hasar<=0){ out.textContent=T('cbSonucHata'); return; }
-  var baz=(hasar-ek)/(ikikat?2:1);
-  var birimGuc=0, hedefAlan='carpan';
-  if(key.indexOf('can_')===0){
-    var cid=key.slice(4), can=null;
-    CANAVARLAR.forEach(function(c){ if(c.id===cid) can=c; });
-    if(!can){ out.textContent=T('cbSonucHata'); return; }
-    birimGuc=can.guc; hedefAlan='can_carpan';
-  } else {
-    var p=key.split('_'), id=p[0], sev=parseInt(p[1]);
-    var birlik=null;
-    MUHAFIZ.concat(OZEL).forEach(function(b){ if(b.id===id) birlik=b; });
-    if(!birlik||!birlik.st||!birlik.st[sev]){ out.textContent=T('cbSonucHata'); return; }
-    birimGuc=birlik.st[sev][0];
-  }
-  var carpan=baz/(adet*birimGuc);
-  if(!isFinite(carpan)||carpan<=0){ out.textContent=T('cbSonucHata'); return; }
-  var yuvarlanmis=Math.round(carpan*1000)/1000;
-  document.getElementById(hedefAlan).value=yuvarlanmis;
-  out.textContent=T('cbSonucOk')+yuvarlanmis;
-  if(sonuc) hesapla();
-}
 function setSavReset(){
-  savProfil = {1:{ldr:'',nuf:''}, 3:{ldr:'',nuf:''}, 4:{ldr:'',nuf:''}};
+  savProfil = {1:{ldr:'',nuf:'',oto:'',ep:''}, 3:{ldr:'',nuf:'',oto:'',ep:''}, 4:{ldr:'',nuf:'',oto:'',ep:''}};
   savasci=1;
   savBtnGuncelle();
 }
@@ -782,6 +711,7 @@ function tipKat(tip){
   return ucanSuvari*suvariPiyade;
 }
 function tipLbl(tip){
+  if(tip==='kusatma') return T('tipKusatma');
   return tip==='ucan'?T('tipUcan'):tip==='suvari'?T('tipSuvari'):tip==='piyade'?T('tipPiyade'):T('tipMenzilli');
 }
 function tipCls(tip){return 'tip-'+tip;}
@@ -825,16 +755,73 @@ function fb(txt,isim){
 }
 
 /* ============ SEÇİM ARAYÜZÜ (checkbox / seviye butonları) ============ */
-function birlikKartHTML(birlik, secimObj, prefix){
+var PGRID_MUH=[
+  [['josephine',2],['josephine',1]],
+  [['kuzgun',2],['cez',2],['arin',2],['cellat',2]],
+  [['kuzgun',1],['cez',1],['arin',1],['cellat',1]],
+  [['sgrifon',7],['atlisov',7],['agirarb',7],['agirteb',7]]
+];
+var PGRID_OZEL=[
+  [['aslaner',2],['akyele',2],['mes',2],['duel',2]],
+  [['aslaner',1],['akyele',1],['mes',1],['duel',1]],
+  [['akbaba',7],['aslanbin',7],['keskin',7],['agirkov',7]]
+];
+var PGRID_CAN=[
+  ['m9_zumru','m9_tahrip','m9_hileb','m9_kraken'],
+  ['m8_zumru','m8_tahrip','m8_hileb','m8_kraken'],
+  ['m7_karejd','m7_antik','m7_ruzgar','m7_kolosus']
+];
+function pIco(imgId,e){ return '<img src="img/'+imgId+'.png" alt="" data-e="'+e+'" onerror="this.outerHTML=\'<div class=&quot;p-emoji&quot;>\'+this.getAttribute(\'data-e\')+\'</div>\'">'; }
+function pKartBirlik(g,id,sev){
+  var so = g==='m'?muhafizSecim:ozelSecim;
+  var liste = g==='m'?MUHAFIZ:OZEL; var b=null; liste.forEach(function(x){if(x.id===id)b=x;});
+  var ak = hasSev(so[id],sev)?' active':'';
+  return '<div class="pcard'+ak+'" onclick="pTogB(\''+g+'\',\''+id+'\','+sev+',this)">'+pIco('u_'+id+'_'+sev, b?b.e:'⚔️')+'<div class="pbadge">'+ROME[sev]+'</div></div>';
+}
+function pTogB(g,id,sev,el){
+  var so = g==='m'?muhafizSecim:ozelSecim;
+  if(hasSev(so[id],sev)) remSev(so[id],sev); else addSev(so[id],sev);
+  el.classList.toggle('active', hasSev(so[id],sev));
+}
+function pKartCan(cid){
+  var c=null; CANAVARLAR.forEach(function(x){if(x.id===cid)c=x;});
+  if(!c) return '';
+  var ak = canavarSecim[cid]?' active':'';
+  return '<div class="pcard'+ak+'" onclick="pTogC(\''+cid+'\',this)">'+pIco('can_'+c.base+'_'+c.sev, c.e)+'<div class="pbadge">'+canRozet(c.sev)+'</div></div>';
+}
+function pTogC(cid,el){ canavarSecim[cid]=!canavarSecim[cid]; el.classList.toggle('active', canavarSecim[cid]); }
+function pKartPas(p){
+  var ak = paraliSecim[p.id]?' active':'';
+  return '<div class="pcard'+ak+'" onclick="pTogP(\''+p.id+'\',this)">'+pIco(p.img||p.id, p.e)+'<div class="pbadge">'+p.oto+'</div></div>';
+}
+function pTogP(id,el){ paraliSecim[id]=!paraliSecim[id]; el.classList.toggle('active', paraliSecim[id]); }
+function pgridHTML(rows, fn){
+  var h='';
+  rows.forEach(function(row,ri){
+    if(ri>0) h+='<div class="pgap"></div>';
+    row.forEach(function(item){ h+=fn(item); });
+  });
+  return h;
+}
+function kartSevleri(birlik, mode){
+  return birlik.sevler.filter(function(s){
+    var g = birlik.st && birlik.st[s];
+    return mode==='ust' ? !!g : !g;
+  });
+}
+function birlikKartHTML(birlik, secimObj, prefix, mode){
+  var sevs = kartSevleri(birlik, mode);
+  if(!sevs.length) return '';
   var isim = N(birlik.id);
-  var sevBtnler = birlik.sevler.map(function(s){
+  var sevBtnler = sevs.map(function(s){
     var ak = hasSev(secimObj[birlik.id], s) ? 'active' : '';
     return '<button class="sev-btn '+ak+'" onclick="toggleSev(\''+prefix+'\',\''+birlik.id+'\','+s+',this)">'+ROME[s]+'</button>';
   }).join('');
-  var aktif = secimObj[birlik.id].length > 0;
-  return '<div class="birlik-kart '+(aktif?'active':'')+'" id="kart-'+prefix+'-'+birlik.id+'">'+
+  var aktif = sevs.some(function(s){return hasSev(secimObj[birlik.id], s);});
+  var ikon = mode==='ust' ? ico(birlik.id,birlik.e) : birlik.e;
+  return '<div class="birlik-kart '+(aktif?'active':'')+'" id="kart-'+prefix+mode+'-'+birlik.id+'">'+
     '<div class="birlik-kart-ust">'+
-      '<span class="birlik-kart-icon">'+birlik.e+'</span>'+
+      '<span class="birlik-kart-icon">'+ikon+'</span>'+
       '<div><div class="birlik-kart-isim">'+isim+'</div>'+
       '<span class="tip-badge '+tipCls(birlik.tip)+'">'+tipLbl(birlik.tip)+'</span></div>'+
     '</div>'+
@@ -849,7 +836,7 @@ function canavarKartHTML(can){
   return '<div class="can-kart '+(aktif?'active':'')+'" id="ckart-'+can.id+'" onclick="toggleCan(\''+can.id+'\')">'+
     '<div class="can-kart-bg">'+can.e+'</div>'+
     '<div class="can-kart-ust">'+
-      '<div class="can-frame '+(meta.frameCls||'')+'">'+can.e+'<div class="can-medal">'+canRozet(can.sev)+'</div></div>'+
+      '<div class="can-frame '+(meta.frameCls||'')+'">'+(can.sev>=7?ico('can_'+can.base+'_'+can.sev,can.e):can.e)+'<div class="can-medal">'+canRozet(can.sev)+'</div></div>'+
       '<div class="can-info">'+
         '<div class="can-isim">'+isim+'</div>'+
         '<div class="can-nuf">🦁 '+can.nuf+' · 💪 '+fmtK(can.guc)+' · ❤️ '+fmtK(can.sag)+'</div>'+
@@ -860,6 +847,7 @@ function canavarKartHTML(can){
 }
 function toggleSev(prefix, birlikId, sev, btn){
   var secimObj = prefix==='m' ? muhafizSecim : ozelSecim;
+  var liste = prefix==='m' ? MUHAFIZ : OZEL;
   if(hasSev(secimObj[birlikId], sev)){
     remSev(secimObj[birlikId], sev);
     btn.classList.remove('active');
@@ -867,8 +855,14 @@ function toggleSev(prefix, birlikId, sev, btn){
     addSev(secimObj[birlikId], sev);
     btn.classList.add('active');
   }
-  var kart=document.getElementById('kart-'+prefix+'-'+birlikId);
-  if(kart) kart.classList.toggle('active', secimObj[birlikId].length>0);
+  var birlik=null; liste.forEach(function(b){if(b.id===birlikId) birlik=b;});
+  ['ust','alt'].forEach(function(mode){
+    var kart=document.getElementById('kart-'+prefix+mode+'-'+birlikId);
+    if(kart && birlik){
+      var sevs=kartSevleri(birlik, mode);
+      kart.classList.toggle('active', sevs.some(function(s){return hasSev(secimObj[birlikId], s);}));
+    }
+  });
 }
 function toggleCan(id){
   canavarSecim[id] = !canavarSecim[id];
@@ -880,23 +874,33 @@ function toggleCan(id){
     btn.textContent = canavarSecim[id] ? ('✓ '+T('selectedWord')) : ('+ '+T('selectWord'));
   }
 }
+function paraliKartHTML(p){
+  var aktif = paraliSecim[p.id];
+  return '<div class="birlik-kart '+(aktif?'active':'')+'" id="pkart-'+p.id+'" onclick="togglePas(\''+p.id+'\')">'+
+    '<div class="birlik-kart-ust">'+
+      '<span class="birlik-kart-icon">'+ico(p.id,p.e)+'</span>'+
+      '<div><div class="birlik-kart-isim">'+PN(p)+'</div>'+
+      '<div style="font-size:9px;color:var(--text3)">🦅 '+p.oto+' · 💪 '+fmtK(p.guc)+' · ❤️ '+fmtK(p.sag)+'</div></div>'+
+    '</div>'+
+  '</div>';
+}
+function togglePas(id){
+  paraliSecim[id] = !paraliSecim[id];
+  var kart=document.getElementById('pkart-'+id);
+  if(kart) kart.classList.toggle('active', paraliSecim[id]);
+}
 function buildSecimUI(){
-  var mg=document.getElementById('muhafiz-grid');
-  var og=document.getElementById('ozel-grid');
-  var cg=document.getElementById('canavar-grid');
-  if(mg) mg.innerHTML = MUHAFIZ.map(function(b){return birlikKartHTML(b, muhafizSecim, 'm');}).join('');
-  if(og) og.innerHTML = OZEL.map(function(b){return birlikKartHTML(b, ozelSecim, 'o');}).join('');
-  if(cg){
-    var gruplar={};
-    CANAVARLAR.forEach(function(c){ if(!gruplar[c.sev]) gruplar[c.sev]=[]; gruplar[c.sev].push(c); });
-    var html='';
-    [3,4,5,6,7,8,9].forEach(function(sev){
-      if(!gruplar[sev]) return;
-      var meta=SEV_META[sev];
-      html+='<div class="sev-grup-wrap"><div class="sev-grup-baslik '+meta.cls+'">'+meta.label+'</div>'+
-        '<div class="birlik-grid">'+gruplar[sev].map(function(c){return canavarKartHTML(c);}).join('')+'</div></div>';
-    });
-    cg.innerHTML=html;
+  var pt=document.getElementById('pgrid-tum');
+  if(pt){
+    var h='';
+    h+=pgridHTML(PGRID_MUH, function(it){return pKartBirlik('m', it[0], it[1]);});
+    h+='<div class="pgap buyuk"></div>';
+    h+=pgridHTML(PGRID_OZEL, function(it){return pKartBirlik('o', it[0], it[1]);});
+    h+='<div class="pgap buyuk"></div>';
+    h+=pgridHTML(PGRID_CAN, function(cid){return pKartCan(cid);});
+    h+='<div class="pgap buyuk"></div>';
+    PARALI.forEach(function(p){ h+=pKartPas(p); });
+    pt.innerHTML=h;
   }
 }
 
@@ -904,7 +908,20 @@ function buildSecimUI(){
 function hesapla(){
   var gsCap=parseInt(document.getElementById('gs_cap').value)||0;
   var mcCap=parseInt(document.getElementById('mc_cap').value)||0;
+  var otoCap=parseInt(document.getElementById('oto_cap').value)||0;
+  var epGuc=parseFloat((document.getElementById('ep_guc').value||'').replace(',','.'))||0;
   var counts={};
+
+  /* Paralı askerler — Otorite kapasitesi, 1.8x + sağlığı en çok olan ilk ölür */
+  if(otoCap>0){
+    var pSec = PARALI.filter(function(p){return paraliSecim[p.id];}).slice().sort(function(a,b){return b.sag-a.sag;});
+    if(pSec.length>0){
+      var payda=0;
+      pSec.forEach(function(p,i){ payda += p.oto / (p.sag * Math.pow(secilenOran, i)); });
+      var H0 = payda>0 ? otoCap/payda : 0;
+      pSec.forEach(function(p,i){ counts['pas_'+p.id] = Math.floor(H0 / (p.sag * Math.pow(secilenOran, i))); });
+    }
+  }
 
   if(gsCap>0){
     var mSec=[], oSec=[];
@@ -962,21 +979,18 @@ function hesapla(){
     topCanSag += cnt*c.sag;
   });
 
-  var bGuc=gelismis?(parseFloat(document.getElementById('bonus_guc').value)||0):0;
-  var bSag=gelismis?(parseFloat(document.getElementById('bonus_sag').value)||0):0;
-  var eGuc=gelismis?(parseFloat(document.getElementById('ejder_guc').value)||0):0;
-  var eSag=gelismis?(parseFloat(document.getElementById('ejder_sag').value)||0):0;
-  var savGuc=Math.round(topGuc*(1+(bGuc+eGuc)/100));
-  var savSag=Math.round(topSag*(1+(bSag+eSag)/100));
-  var carpan=gelismis?getCarpan():0;
-  var canCarpan=gelismis?getCanCarpan():0;
-  var savVurus=Math.round(topGuc*carpan);
-  var canVurus=Math.round(topCanGuc*canCarpan);
-  sonuc = {counts:counts, gsUsed:gsUsed, mcUsed:mcUsed, gsRem:gsCap-gsUsed, mcRem:mcCap-mcUsed, gsCap:gsCap, mcCap:mcCap, flyCount:flyCount, topGuc:topGuc, topSag:topSag, statEksik:statEksik, bGuc:bGuc, bSag:bSag, eGuc:eGuc, eSag:eSag, savGuc:savGuc, savSag:savSag, carpan:carpan, canCarpan:canCarpan, savVurus:savVurus, canVurus:canVurus, topCanGuc:topCanGuc, topCanSag:topCanSag};
+  var otoUsed=0, topPasGuc=0, topPasSag=0;
+  PARALI.filter(function(p){return paraliSecim[p.id];}).forEach(function(p){
+    var cnt=counts['pas_'+p.id]||0;
+    otoUsed += cnt*p.oto; topPasGuc += cnt*p.guc; topPasSag += cnt*p.sag;
+  });
+
+  sonuc = {counts:counts, gsUsed:gsUsed, mcUsed:mcUsed, gsRem:gsCap-gsUsed, mcRem:mcCap-mcUsed, gsCap:gsCap, mcCap:mcCap, otoUsed:otoUsed, otoRem:otoCap-otoUsed, otoCap:otoCap, epGuc:epGuc, flyCount:flyCount, topGuc:topGuc, topSag:topSag, statEksik:statEksik, topPasGuc:topPasGuc, topPasSag:topPasSag, topCanGuc:topCanGuc, topCanSag:topCanSag};
 
   document.getElementById('b-ldr').textContent=fmt(gsUsed);
   document.getElementById('b-ldr-max').textContent=fmt(gsCap);
-  document.getElementById('b-fly').textContent=fmt(flyCount);
+  document.getElementById('b-oto').textContent=fmt(otoUsed);
+  document.getElementById('b-oto-max').textContent=fmt(otoCap);
   document.getElementById('b-nuf').textContent=fmt(mcUsed);
   document.getElementById('b-nuf-max').textContent=fmt(mcCap);
 
@@ -986,17 +1000,16 @@ function hesapla(){
   showTab('ordu');
 }
 
-function unitRowHTML(e, badgeTxt, name, tag, tip, count, maxCount, copyName, guc, sag, dmg){
+function unitRowHTML(imgId, e, badgeTxt, name, tag, tip, count, maxCount, copyName, guc, sag){
   var pct = maxCount>0  ? Math.min(100, count/maxCount*100) : 5;
-  var extraRow = (guc!=null) ? ('<div class="unit-tag">💪 '+fmtK(guc)+' · ❤️ '+fmtK(sag)+'</div>') : '';
-  if(dmg!=null) extraRow += '<div class="unit-tag" style="color:var(--brown2)">'+T('vurusLbl')+fmt(dmg)+'</div>';
+  var totRows = (guc!=null) ? ('<div class="unit-tot" style="color:var(--red2)">'+fmt(count*guc)+'</div><div class="unit-tot" style="color:var(--green2)">'+fmt(count*sag)+'</div>') : '';
   return '<div class="unit-row">'+
-    '<div class="unit-frame">'+e+'<div class="unit-badge">'+badgeTxt+'</div></div>'+
+    '<div class="unit-frame">'+ico(imgId,e)+'<div class="unit-badge">'+badgeTxt+'</div></div>'+
     '<div class="unit-info">'+
-      '<div class="unit-name">'+name+(tag?' <span style="font-size:9px;color:var(--text3)">'+tag+'</span>':'')+'</div>'+
+      '<div class="unit-name">'+name+' '+badgeTxt+(tag?' <span style="font-size:9px;color:var(--text3)">'+tag+'</span>':'')+'</div>'+
       (tip ? ('<div class="unit-tag"><span class="tip-badge '+tipCls(tip)+'">'+tipLbl(tip)+'</span></div>') : '')+
-      extraRow+
       '<div class="unit-count">'+fmt(count)+'</div>'+
+      totRows+
       '<div class="unit-bar-track"><div class="unit-bar-fill" style="width:'+pct+'%"></div></div>'+
     '</div>'+
     '<button class="copy-btn" onclick="kopyala('+count+',\''+copyName.replace(/'/g,"\\'")+'\')">📋<br>'+T('copyBtn')+'</button>'+
@@ -1026,12 +1039,21 @@ function buildOrdu(){
       var sevler=sec[id].slice().sort(function(a,b){return b-a;});
       var maxC=r.counts[id+'_'+sevler[sevler.length-1]]||c;
       var stv = birlik.st && birlik.st[sev];
-      var dmg = (stv && sonuc && sonuc.carpan>0) ? Math.round(c*stv[0]*sonuc.carpan) : null;
-      h+=unitRowHTML(birlik.e, rome, isim, null, birlik.tip, c, maxC, isim+' '+rome, stv?stv[0]:null, stv?stv[1]:null, dmg);
+      h+=unitRowHTML('u_'+id+'_'+sev, birlik.e, rome, isim, null, birlik.tip, c, maxC, isim+' '+rome, stv?stv[0]:null, stv?stv[1]:null);
     });
   });
   h+='</div>';
   if(!any) h='<div class="empty-state">'+T('secilikYok')+'</div>';
+  var pasAktif = PARALI.filter(function(p){return paraliSecim[p.id] && (r.counts['pas_'+p.id]||0)>0;});
+  if(pasAktif.length>0){
+    h+='<div class="sec-header"><span class="sec-dot">♦</span><span class="sec-title">'+T('pasBaslik')+'</span><span class="sec-dot">♦</span></div><div class="unit-list">';
+    var pasMax=Math.max.apply(null,pasAktif.map(function(p){return r.counts['pas_'+p.id]||0;}));
+    pasAktif.forEach(function(p){
+      var cnt=r.counts['pas_'+p.id]||0;
+      h+=unitRowHTML(p.img||p.id, p.e, '🦅'+p.oto, PN(p), null, null, cnt, pasMax, PN(p), p.guc, p.sag);
+    });
+    h+='</div>';
+  }
   h+='<div class="action-btns"><button class="action-btn copy" onclick="tumunuKopyala()">'+T('copyAllBtn')+'</button><button class="action-btn share" onclick="paylasMetin()">'+T('shareBtn2')+'</button></div>';
   document.getElementById('ordu-content').innerHTML=h;
 }
@@ -1056,8 +1078,7 @@ function buildCanavar(){
       if(cnt<=0) return;
       any=true;
       var isim=canAd(c);
-      var cdmg=(sonuc && sonuc.canCarpan>0)?Math.round(cnt*c.guc*sonuc.canCarpan):null;
-      h+=unitRowHTML(c.e, canRozet(c.sev), isim, null, null, cnt, maxCntInGroup, isim, c.guc, c.sag, cdmg);
+      h+=unitRowHTML('can_'+c.base+'_'+c.sev, c.e, canRozet(c.sev), isim, null, null, cnt, maxCntInGroup, isim, c.guc, c.sag);
     });
     h+='</div>';
   });
@@ -1073,26 +1094,18 @@ function buildHesapResult(){
     '<div class="sonuc-grid">'+
     '<div class="sonuc-card"><div class="sonuc-val" style="color:var(--green2)">'+fmt(r.gsUsed)+'</div><div class="sonuc-lbl">'+T('ldrKul')+'</div></div>'+
     '<div class="sonuc-card"><div class="sonuc-val" style="color:var(--red)">'+fmt(Math.max(0,r.gsRem))+'</div><div class="sonuc-lbl">'+T('ldrKal')+'</div></div>'+
+    (r.otoCap>0 ? (
+      '<div class="sonuc-card"><div class="sonuc-val" style="color:var(--green2)">'+fmt(r.otoUsed)+'</div><div class="sonuc-lbl">'+T('otoKul')+'</div></div>'+
+      '<div class="sonuc-card"><div class="sonuc-val" style="color:var(--red)">'+fmt(Math.max(0,r.otoRem))+'</div><div class="sonuc-lbl">'+T('otoKal')+'</div></div>'
+    ) : '')+
     '<div class="sonuc-card"><div class="sonuc-val" style="color:var(--green2)">'+fmt(r.mcUsed)+'</div><div class="sonuc-lbl">'+T('nufKul')+'</div></div>'+
     '<div class="sonuc-card"><div class="sonuc-val" style="color:var(--red)">'+fmt(Math.max(0,r.mcRem))+'</div><div class="sonuc-lbl">'+T('nufKal')+'</div></div>'+
     ((r.topGuc>0||r.topSag>0) ? (
-      '<div class="sonuc-card"><div class="sonuc-val" style="color:var(--gold2)">'+fmt(r.topGuc)+'</div><div class="sonuc-lbl">'+T('orduGuc')+(r.statEksik?' *':'')+'</div></div>'+
-      '<div class="sonuc-card"><div class="sonuc-val" style="color:var(--green2)">'+fmt(r.topSag)+'</div><div class="sonuc-lbl">'+T('orduSag')+(r.statEksik?' *':'')+'</div></div>'
+      '<div class="sonuc-card"><div class="sonuc-val" style="color:var(--red2)">'+fmt(r.topGuc+r.topPasGuc)+'</div><div class="sonuc-lbl">'+T('orduGuc')+(r.statEksik?' *':'')+'</div></div>'+
+      '<div class="sonuc-card"><div class="sonuc-val" style="color:var(--green2)">'+fmt(r.topSag+r.topPasSag)+'</div><div class="sonuc-lbl">'+T('orduSag')+(r.statEksik?' *':'')+'</div></div>'
     ) : '')+
+    (r.epGuc>0 ? '<div class="sonuc-card" style="grid-column:1/-1"><div class="sonuc-val" style="color:var(--gold2)">'+r.epGuc.toLocaleString(LOCALE[lang]||'en-US')+'</div><div class="sonuc-lbl">'+T('epLbl')+'</div></div>' : '')+
     '</div>'+
-    ((r.topGuc>0&&(r.bGuc>0||r.bSag>0||r.eGuc>0||r.eSag>0)) ? (
-    '<div class="sonuc-grid" style="margin-top:8px">'+
-      '<div class="sonuc-card"><div class="sonuc-val" style="color:var(--gold2)">'+fmt(r.savGuc)+'</div><div class="sonuc-lbl">'+T('savGuc')+'</div></div>'+
-      '<div class="sonuc-card"><div class="sonuc-val" style="color:var(--green2)">'+fmt(r.savSag)+'</div><div class="sonuc-lbl">'+T('savSag')+'</div></div>'+
-    '</div>'+
-    '<div style="font-size:11px;color:var(--text3);text-align:center;margin-top:6px">'+T('savNot')+'</div>'
-    ) : '')+
-    (((r.carpan>0&&r.topGuc>0)||(r.canCarpan>0&&r.topCanGuc>0)) ? (
-    '<div class="sonuc-grid" style="margin-top:8px">'+
-      ((r.carpan>0&&r.topGuc>0)?'<div class="sonuc-card" style="grid-column:1/-1"><div class="sonuc-val" style="color:var(--gold2)">'+fmt(r.savVurus)+'</div><div class="sonuc-lbl">'+T('savVurus')+(r.statEksik?' *':'')+'</div></div>':'')+
-      ((r.canCarpan>0&&r.topCanGuc>0)?'<div class="sonuc-card" style="grid-column:1/-1"><div class="sonuc-val" style="color:var(--red)">'+fmt(r.canVurus)+'</div><div class="sonuc-lbl">'+T('canVurus')+'</div></div>':'')+
-    '</div>'
-    ) : '')+
     ((r.statEksik&&(r.topGuc>0||r.topSag>0))?'<div style="font-size:11px;color:var(--text3);text-align:center;margin-top:6px">'+T('statNot')+'</div>':'');
 }
 
@@ -1123,6 +1136,12 @@ function tumMetinOlustur(){
   });
   if(!varOrdu) txt+=T('secilikYok')+NL;
 
+  var pasA = PARALI.filter(function(p){return paraliSecim[p.id] && (r.counts['pas_'+p.id]||0)>0;});
+  if(pasA.length>0){
+    txt+=NL+SEP+T('pasBaslik')+NL+SEP;
+    pasA.forEach(function(p){ txt+=PN(p)+': '+fmt(r.counts['pas_'+p.id]||0)+NL; });
+  }
+
   var aktifCan = CANAVARLAR.filter(function(c){return canavarSecim[c.id] && (r.counts['can_'+c.id]||0)>0;});
   if(aktifCan.length>0){
     txt+=NL+SEP+T('canBaslik')+NL+SEP;
@@ -1139,6 +1158,8 @@ function tumMetinOlustur(){
 
   txt+=NL+SEP;
   txt+=T('txtLdrEtiket')+fmt(r.gsUsed)+'/'+fmt(r.gsCap)+T('txtNufEtiket')+fmt(r.mcUsed)+'/'+fmt(r.mcCap)+NL;
+  if(r.otoCap>0) txt+='🦅 '+fmt(r.otoUsed)+'/'+fmt(r.otoCap)+NL;
+  if(r.epGuc>0) txt+='🛡️ '+T('epLbl')+': '+r.epGuc+NL;
   txt+='✦ Designed By DaBBe & SiRiuS VeGa ✦';
   return txt;
 }
@@ -1220,6 +1241,8 @@ function applyLang(){
     'lbl-ldr':'lblLdr','lbl-nuf':'lblNuf','lbl-oran':'lblOran',
     'lbl-us':'lblUs','lbl-sp':'lblSp','lbl-of':'lblOf',
     'lbl-muh':'lblMuh','lbl-ozel':'lblOzel','lbl-cansec':'lblCanSec',
+    'lbl-oto':'lblOto','lbl-ep':'lblEp','lbl-pas':'lblPas',
+    'lbl-sectroops':'secTroops',
     'lbl-bonus':'lblBonus','lbl-bguc':'lblBGuc','lbl-bsag':'lblBSag','lbl-sav':'lblSav',
     'sav-1':'sav1','sav-3':'sav3','sav-4':'sav4',
     'lbl-gelismis':'lblGelismis','lbl-carpan':'lblCarpan','lbl-cancarpan':'lblCanCarpan',
@@ -1235,31 +1258,21 @@ function applyLang(){
   });
   document.getElementById('gs_cap').placeholder=T('phLdr');
   document.getElementById('mc_cap').placeholder=T('phNuf');
-  buildCarpanSelect();
 }
 
 function resetAll(){
   document.getElementById('gs_cap').value='';
   document.getElementById('mc_cap').value='';
-  document.getElementById('bonus_guc').value='';
-  document.getElementById('bonus_sag').value='';
-  document.getElementById('carpan').value='';
-  document.getElementById('can_carpan').value='';
-  document.getElementById('ejder_guc').value='';
-  document.getElementById('ejder_sag').value='';
-  document.getElementById('cb_adet').value='';
-  document.getElementById('cb_hasar').value='';
-  document.getElementById('cb_ek').value='';
-  document.getElementById('cb_ikikat').classList.remove('active');
-  document.getElementById('cb_sonuc').textContent='';
-  if(gelismis) toggleGelismis();
+  document.getElementById('oto_cap').value='';
+  document.getElementById('ep_guc').value='';
   setSavReset();
-  MUHAFIZ.forEach(function(b){ muhafizSecim[b.id] = (b.sevler.join()==='1,2') ? [1,2] : []; });
-  OZEL.forEach(function(b){ ozelSecim[b.id] = (b.sevler.join()==='1,2') ? [1,2] : []; });
-  CANAVARLAR.forEach(function(c){ canavarSecim[c.id] = (c.sev>=7); });
+  PARALI.forEach(function(p){ paraliSecim[p.id]=false; });
+  MUHAFIZ.forEach(function(b){ muhafizSecim[b.id] = []; });
+  OZEL.forEach(function(b){ ozelSecim[b.id] = []; });
+  CANAVARLAR.forEach(function(c){ canavarSecim[c.id] = false; });
   sonuc=null;
-  ['b-ldr','b-fly','b-nuf'].forEach(function(id){document.getElementById(id).textContent='0';});
-  ['b-ldr-max','b-nuf-max'].forEach(function(id){document.getElementById(id).textContent='0';});
+  ['b-ldr','b-oto','b-nuf'].forEach(function(id){document.getElementById(id).textContent='0';});
+  ['b-ldr-max','b-oto-max','b-nuf-max'].forEach(function(id){document.getElementById(id).textContent='0';});
   document.getElementById('ordu-content').innerHTML='<div class="empty-state"><div style="font-size:40px;margin-bottom:10px">⚔️</div><span id="empty-ordu-txt">'+T('emptyOrdu')+'</span></div>';
   document.getElementById('canavar-content').innerHTML='<div class="empty-state"><div style="font-size:40px;margin-bottom:10px">🐉</div><span id="empty-can-txt">'+T('emptyOrdu')+'</span></div>';
   document.getElementById('hesap-result').innerHTML='<div class="empty-state"><div style="font-size:40px;margin-bottom:10px">⚙️</div><span id="empty-hes-txt">'+T('emptyHes')+'</span></div>';
